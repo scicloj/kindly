@@ -1,5 +1,7 @@
 # kindly
 
+[![Clojars Project](https://img.shields.io/clojars/v/org.scicloj/kindly.svg)](https://clojars.org/org.scicloj/kindly)
+
 This is a small library for defining how different kinds of things should be rendered.
 
 It has been extracted out of [Notespace](github.com/scicloj/notespace) to allow for specifying such details across tools and libraries.

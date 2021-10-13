@@ -3,7 +3,6 @@ All notable changes to this project will be documented in this file. This change
 
 ## [1-alpha2-SNAPSHOT]
 - changing the kind and behaviour resolution api
-- image support
 
 ## [1-alpha1] - 2021-10-09
 Initial version

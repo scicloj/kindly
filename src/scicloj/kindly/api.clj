@@ -23,18 +23,17 @@
 (defn value->kind [value]
   (-> value
       meta
-      :kindly/kind
-      (or kind/naive)))
+      :kindly/kind))
 
 (defn kind->behaviour [kind]
   (@defs/*kind->behaviour kind))
 
 (defn value->behaviour [value]
   (or (-> value
-          kindness/->behaviour)
-      (-> value
           value->kind
-          kind->behaviour)))
+          kind->behaviour)
+      (-> value
+          kindness/->behaviour)))
 
 (defn assoc-kind-behaviour! [kind behaviour]
   (defs/assoc-kind-behaviour! kind behaviour))

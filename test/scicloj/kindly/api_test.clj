@@ -33,7 +33,7 @@
       is)
   (-> [:div]
       kindly/value->kind
-      (= :naive)
+      nil?
       is))
 
 (def dummy-behaviour
@@ -60,6 +60,6 @@
       is)
   (-> [3]
       kindly/value->behaviour
-      (= (kindly/kind->behaviour :naive))
+      nil?
       is))
 

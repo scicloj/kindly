@@ -38,3 +38,7 @@
 (defn assoc-kind-behaviour! [kind behaviour]
   (defs/assoc-kind-behaviour! kind behaviour))
 
+(defn to-hiccup [value]
+  (let [{:keys [value->hiccup]}
+        (value->behaviour value)]
+    (value->hiccup value)))

@@ -1,4 +1,4 @@
-(defproject org.scicloj/kindly "1-alpha2"
+(defproject org.scicloj/kindly "1-alpha3"
   :description "A small library for defining how different kinds of things should be rendered"
   :url "https://github.com/scicloj/kindly"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"

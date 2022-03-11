@@ -7,7 +7,7 @@ This is a small library for defining how different kinds of things should be ren
 It has been extracted out of [Notespace](github.com/scicloj/notespace) to allow for specifying such details across tools and libraries.
 
 # Related projects
-See a self-contained experiment inspired by kindly here at [portal-clerk-kindly-nrepl-1](https://github.com/scicloj/visual-tools-experiments/tree/main/portal-clerk-kindly-nrepl-1).
+See a self-contained (and better documented) experiment inspired by kindly here at [portal-clerk-kindly-nrepl-1](https://github.com/scicloj/visual-tools-experiments/tree/main/portal-clerk-kindly-nrepl-1).
 
 # Usage
 

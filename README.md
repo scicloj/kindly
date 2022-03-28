@@ -2,9 +2,12 @@
 
 [![Clojars Project](https://img.shields.io/clojars/v/org.scicloj/kindly.svg)](https://clojars.org/org.scicloj/kindly)
 
-This is a small library for defining how different kinds of things should be rendered.
+This is a small library for defining how different kinds of things should be viewed.
 
 It has been extracted out of [Notespace](github.com/scicloj/notespace) to allow for specifying such details across tools and libraries.
+
+# Status
+This is still alpha stage.
 
 # Related projects
 See a self-contained (and better documented) experiment inspired by kindly here at [portal-clerk-kindly-nrepl-1](https://github.com/scicloj/visual-tools-experiments/tree/main/portal-clerk-kindly-nrepl-1).

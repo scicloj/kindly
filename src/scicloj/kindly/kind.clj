@@ -1,2 +1,0 @@
-(ns scicloj.kindly.kind)
-

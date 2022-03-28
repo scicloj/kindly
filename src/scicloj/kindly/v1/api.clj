@@ -1,7 +1,7 @@
-(ns scicloj.kindly.api
-  (:require [scicloj.kindly.kind :as kind]
-            [scicloj.kindly.defs :as defs]
-            [scicloj.kindly.kindness :as kindness]))
+(ns scicloj.kindly.v1.api
+  (:require [scicloj.kindly.v1.kind :as kind]
+            [scicloj.kindly.v1.defs :as defs]
+            [scicloj.kindly.v1.kindness :as kindness]))
 
 (defn consider [value kind]
   (vary-meta value assoc :kindly/kind kind))

@@ -1,4 +1,4 @@
-(ns scicloj.kindly.kindness)
+(ns scicloj.kindly.v1.kindness)
 
 (defprotocol Kindness
   (->behaviour [this]))

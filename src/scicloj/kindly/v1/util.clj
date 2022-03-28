@@ -1,4 +1,4 @@
-(ns scicloj.kindly.util)
+(ns scicloj.kindly.v1.util)
 
 (defn map-coll->key-vector-map
   [coll]
@@ -14,4 +14,3 @@
                 [wrapper x]))
          (into [:div]))
     [wrapper v]))
-

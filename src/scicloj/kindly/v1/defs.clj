@@ -1,14 +1,14 @@
-(ns scicloj.kindly.defs
-  (:require [scicloj.kindly.view :as view]
-            [scicloj.kindly.util :as util]
-            [scicloj.kindly.kind :as kind]))
+(ns scicloj.kindly.v1.defs
+  (:require [scicloj.kindly.v1.view :as view]
+            [scicloj.kindly.v1.util :as util]
+            [scicloj.kindly.v1.kind :as kind]))
 
 (def *kind->behaviour (atom {}))
 
 (defn assoc-kind-behaviour! [kind behaviour]
   (swap! *kind->behaviour
          assoc kind behaviour)
-  (intern 'scicloj.kindly.kind (symbol (name kind)) kind))
+  (intern 'scicloj.kindly.v1.kind (symbol (name kind)) kind))
 
 (assoc-kind-behaviour! :naive
   {:render-src?   true
@@ -77,4 +77,3 @@
 (assoc-kind-behaviour! :html
   {:render-src?   true
    :value->hiccup (partial vector :p/html)})
-

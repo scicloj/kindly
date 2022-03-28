@@ -1,7 +1,7 @@
-(ns scicloj.kindly.view
+(ns scicloj.kindly.v1.view
   (:require [clojure.string :as string]
             [clojure.pprint :as pp]
-            [scicloj.kindly.util :as util]))
+            [scicloj.kindly.v1.util :as util]))
 
 
 (defn value->naive-hiccup [value]
@@ -77,5 +77,3 @@
   [:div
    (bool->symbol bool)
    (str "   " bool)])
-
-

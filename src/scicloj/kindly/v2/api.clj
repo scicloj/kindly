@@ -1,19 +1,23 @@
 (ns scicloj.kindly.v2.api
   (:require [scicloj.kindly.v2.kind :as kind]
             [scicloj.kindly.v2.kindness :as kindness]
-            [scicloj.kindly.v2.behaviours :as behaviours]))
+            [scicloj.kindly.v2.impl :as impl]))
+
+(defn define-kind! [kind]
+  (impl/define-kind! kind))
 
 (defn define-kind-behaviour! [kind behaviour]
-  (behaviours/define-kind-behaviour! kind behaviour))
+  (impl/define-kind-behaviour! kind behaviour))
 
 (defn kind->behaviour [kind]
-  (behaviours/kind->behaviour kind))
+  (impl/kind->behaviour kind))
 
 (defn consider [value kind]
-  (vary-meta value assoc :kindly/kind kind))
+  (cond (keyword? kind) (impl/attach-kind-to-value value kind)
+        (fn? kind) (consider value (kind))))
 
 (defn kinds-set []
-  (set (keys @behaviours/*kind->behaviour)))
+  (set (keys @impl/*kind->behaviour)))
 
 (defn code->kind [code]
   (when-let [m (some-> code

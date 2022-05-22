@@ -1,6 +1,5 @@
 (ns scicloj.kindly.v2.kindness)
 
-
 (defprotocol Kindness
   (kind [this]))
 

@@ -2,13 +2,9 @@
 
 [![Clojars Project](https://img.shields.io/clojars/v/org.scicloj/kindly.svg)](https://clojars.org/org.scicloj/kindly)
 
-Kindly is a small library for defining in what kinds of ways things should be viewed.
+Kindly is a small library for defining in what kinds of way things should be displays
 
-It has been extracted out of [Notespace](github.com/scicloj/notespace) to allow for specifying such details across tools and libraries.
-
-Nowadays, it is part of a stack of libraries organized around the [Clay](https://github.com/scicloj/clay) tool.
-
-For documentation, please see [the Clay intro](https://scicloj.github.io/clay/#/notebooks/intro.clj).
+It is intented to kindly advise various tools how to display things, with sensible defaults that can be overridden by users.
 
 ## License
 

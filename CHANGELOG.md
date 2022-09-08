@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [3-alpha1] - 2022-09-08
+a revised conceptual model:
+- a tiny general api giving advice to tools
+- default behavior is only one kind of advice
+
 ## [2-alpha2] - 2022-04-05
 - extended the functionality of the kind namespaces -- now its members are multiarity functions for user convenience
 - regorganized implementation namespaces

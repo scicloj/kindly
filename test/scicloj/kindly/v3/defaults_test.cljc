@@ -77,3 +77,9 @@
           (kindly/advice [defaults/advice])
           :kind
           (= :kind/mytestkind7))))
+
+(deftest default-test
+  (is (-> {:value {:x 9}}
+          (kindly/advice [defaults/advice])
+          :kind
+          (= :kind/pprint))))

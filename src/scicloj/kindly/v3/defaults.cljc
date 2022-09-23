@@ -32,7 +32,8 @@
    (or (-> code
            code->kind)
        (-> value
-           value->kind))))
+           value->kind)
+       :kind/pprint)))
 
 (defn advice [{:as context
                :keys [value code]}]

@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file. This change
 a revised conceptual model:
 - a tiny general api giving advice to tools
 - default behavior is only one kind of advice
+  - :kind/pprint is the default 
 
 ## [2-alpha2] - 2022-04-05
 - extended the functionality of the kind namespaces -- now its members are multiarity functions for user convenience

@@ -25,5 +25,8 @@
 (defn add-kind! [kind]
   (impl/define-kind! kind))
 
+(defn known-kinds []
+  @impl/*kinds-set)
+
 (defn add-advice! [advice]
   (swap! *advices conj advice))

@@ -13,9 +13,9 @@
           remaining-advices advices]
      (if (:kind current-context)
        current-context
-       (if-let [advice1 (first advices)]
+       (if-let [advice1 (first remaining-advices)]
          (recur (advice1 context)
-                (rest advices))
+                (rest remaining-advices))
          current-context)))))
 
 (defn consider [value kind]
@@ -30,3 +30,6 @@
 
 (defn add-advice! [advice]
   (swap! *advices conj advice))
+
+(defn set-only-advice! [advice]
+  (reset! *advices [advice]))

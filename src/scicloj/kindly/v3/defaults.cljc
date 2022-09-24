@@ -30,8 +30,7 @@
    (or (-> form
            form->kind)
        (-> value
-           value->kind)
-       :kind/pprint)))
+           value->kind))))
 
 (defn advice [{:as context
                :keys [value form]}]
@@ -41,4 +40,4 @@
            :kind (kind value form))))
 
 (defn setup! []
-  (kindly/add-advice! advice))
+  (kindly/set-only-advice! advice))

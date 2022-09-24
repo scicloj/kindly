@@ -6,7 +6,9 @@
 (extend-protocol Kindness
   nil
   (kind [this]
-    :kind/pprint)
+    nil
+    #_:kind/pprint)
   Object
   (kind [this]
-    :kind/pprint))
+    nil
+    #_:kind/pprint))

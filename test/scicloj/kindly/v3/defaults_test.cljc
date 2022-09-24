@@ -5,6 +5,12 @@
             [scicloj.kindly.v3.kind :as kind]
             [clojure.test :refer [deftest is]]))
 
+(deftest default-test
+  (is (-> {:value {:x 9}}
+          (kindly/advice [defaults/advice])
+          :kind
+          nil?)))
+
 (deftype MyType1 [])
 (extend-protocol kindness/Kindness
   MyType1
@@ -24,13 +30,13 @@
   (is (-> {:value (MyType2.)}
           (kindly/advice [defaults/advice])
           :kind
-          (= :kind/pprint))))
+          nil?)))
 
 (deftest nil-test
   (is (-> {:value nil}
           (kindly/advice [defaults/advice])
           :kind
-          (= :kind/pprint))))
+          nil?)))
 
 (deftest value-with-kind-metadata-test
   (is (-> {:value (-> {:some :data}
@@ -82,4 +88,4 @@
   (is (-> {:value {:x 9}}
           (kindly/advice [defaults/advice])
           :kind
-          (= :kind/pprint))))
+          nil?)))

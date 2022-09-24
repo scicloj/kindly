@@ -66,13 +66,13 @@
           :kind
           (= :kind/mytestkind5))))
 
-(deftest code-metadata-test
-  (is (-> {:code "^:kind/mytestkind6 (+ 1 2)"
+(deftest form-metadata-test
+  (is (-> {:form (read-string "^:kind/mytestkind6 (+ 1 2)")
            :value 3}
           (kindly/advice [defaults/advice])
           :kind
           (= :kind/mytestkind6)))
-  (is (-> {:code "^{:kind/mytestkind7 true} (+ 1 2)"
+  (is (-> {:form (read-string "^{:kind/mytestkind7 true} (+ 1 2)")
            :value 3}
           (kindly/advice [defaults/advice])
           :kind

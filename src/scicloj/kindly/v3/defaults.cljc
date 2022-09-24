@@ -3,10 +3,8 @@
             [scicloj.kindly.v3.impl :as impl]
             [scicloj.kindly.v3.kindness :as kindness]))
 
-(defn code->kind [code]
-  (when-let [m (some-> code
-                       read-string
-                       meta)]
+(defn form->kind [form]
+  (when-let [m (some-> form meta)]
     (or (some->> m
                  :tag
                  resolve
@@ -28,17 +26,19 @@
           kindness/kind)))
 
 (defn kind
-  ([value code]
-   (or (-> code
-           code->kind)
+  ([value form]
+   (or (-> form
+           form->kind)
        (-> value
            value->kind)
        :kind/pprint)))
 
 (defn advice [{:as context
-               :keys [value code]}]
-  (assoc context
-         :kind (kind value code)))
+               :keys [value form]}]
+  (if (:kind context)
+    context
+    (assoc context
+           :kind (kind value form))))
 
 (defn setup! []
   (kindly/add-advice! advice))

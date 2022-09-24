@@ -6,6 +6,7 @@ a revised conceptual model:
 - a tiny general api giving advice to tools
 - default behavior is only one kind of advice
   - :kind/pprint is the default 
+  - looking into the form rather than the code
 
 ## [2-alpha2] - 2022-04-05
 - extended the functionality of the kind namespaces -- now its members are multiarity functions for user convenience

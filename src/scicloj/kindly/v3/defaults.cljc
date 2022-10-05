@@ -18,12 +18,22 @@
                               (= "kind")))
                  first))))
 
+(defn value->kind-by-logic [value]
+  (cond (and (vector? value)
+             (-> value first keyword?))
+        :kind/hiccup
+        ;;
+        :else
+        nil))
+
 (defn value->kind [value]
   (or (-> value
           meta
           :kindly/kind)
       (-> value
-          kindness/kind)))
+          kindness/kind)
+      (-> value
+          value->kind-by-logic)))
 
 (defn kind
   ([value form]

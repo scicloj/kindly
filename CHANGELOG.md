@@ -1,7 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
-## [3-alpha1] - 2022-09-08
+## [3-alpha2-SNAPSHOT]
+- default recognition of :kind/hiccup
+
+## [3-alpha1] - 2022-10-05
 a revised conceptual model:
 - a tiny general api giving advice to tools
 - default behavior is only one kind of advice

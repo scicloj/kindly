@@ -89,3 +89,9 @@
           (kindly/advice [defaults/advice])
           :kind
           nil?)))
+
+(deftest hiccup-test
+  (is (-> {:value [:h4 "hi"]}
+          (kindly/advice [defaults/advice])
+          :kind
+          (= :kind/hiccup))))

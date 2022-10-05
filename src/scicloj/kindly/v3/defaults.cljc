@@ -36,8 +36,9 @@
                :keys [value form]}]
   (if (:kind context)
     context
-    (assoc context
-           :kind (kind value form))))
+    (let [k (kind value form)]
+      (assoc context
+             :kind k))))
 
 (defn setup! []
-  (kindly/set-only-advice! advice))
+  (kindly/set-only-advice! #'advice))

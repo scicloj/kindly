@@ -6,6 +6,8 @@ Kindly is a small library for defining in what kinds of way things should be dis
 
 It is intented to kindly advise various tools how to display things, with sensible defaults that can be overridden by users.
 
+Documentation is coming soon.
+
 ## License
 
 Copyright © 2021 Scicloj

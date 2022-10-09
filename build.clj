@@ -3,7 +3,7 @@
   (:require [clojure.tools.build.api :as b] ; for b/git-count-revs
             [org.corfield.build :as bb]))
 
-(def lib 'org.scicloj/kinly)
+(def lib 'org.scicloj/kindly)
 (def version "3-alpha2")
 #_ ; alternatively, use MAJOR.MINOR.COMMITS:
 (def version (format "1.0.%s" (b/git-count-revs nil)))

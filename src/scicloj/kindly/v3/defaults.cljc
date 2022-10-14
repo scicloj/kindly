@@ -42,13 +42,31 @@
        (-> value
            value->kind))))
 
-(defn advice [{:as context
-               :keys [value form]}]
-  (if (:kind context)
-    context
-    (let [k (kind value form)]
-      (assoc context
-             :kind k))))
+
+(defn check-predicate-kinds [value predicate-kinds]
+  (->> predicate-kinds
+       (map (fn [[predicate k]]
+              (when (predicate value)
+                k)))
+       (filter identity)
+       first))
+
+(def default-predicate-kinds
+  [[(fn [v]
+      (-> v type pr-str (= "tech.v3.dataset.impl.dataset.Dataset")))
+    :kind/dataset]])
+
+(defn create-advice
+  ([]
+   (create-advice {:predicate-kinds default-predicate-kinds}))
+  ([{:keys [predicate-kinds]}]
+   (fn [{:as context :keys [value form]}]
+     (if (:kind context)
+       context
+       (assoc context
+              :kind (or (kind value form)
+                        (check-predicate-kinds value
+                                               predicate-kinds)))))))
 
 (defn setup! []
-  (kindly/set-only-advice! #'advice))
+  (kindly/set-only-advice! (create-advice)))

@@ -5,9 +5,12 @@
             [scicloj.kindly.v3.kind :as kind]
             [clojure.test :refer [deftest is]]))
 
+(def default-advice
+  (defaults/create-advice))
+
 (deftest default-test
   (is (-> {:value {:x 9}}
-          (kindly/advice [defaults/advice])
+          (kindly/advice [default-advice])
           :kind
           nil?)))
 
@@ -20,7 +23,7 @@
 (deftest type-with-user-defined-kindness-test
 
   (is (-> {:value (MyType1.)}
-          (kindly/advice [defaults/advice])
+          (kindly/advice [default-advice])
           :kind
           (= :kind/mytestkind1))))
 
@@ -28,20 +31,20 @@
 
 (deftest type-without-user-defined-kindness-test
   (is (-> {:value (MyType2.)}
-          (kindly/advice [defaults/advice])
+          (kindly/advice [default-advice])
           :kind
           nil?)))
 
 (deftest nil-test
   (is (-> {:value nil}
-          (kindly/advice [defaults/advice])
+          (kindly/advice [default-advice])
           :kind
           nil?)))
 
 (deftest value-with-kind-metadata-test
   (is (-> {:value (-> {:some :data}
                       (with-meta {:kindly/kind :kind/mytestkind2}))}
-          (kindly/advice [defaults/advice])
+          (kindly/advice [default-advice])
           :kind
           (= :kind/mytestkind2))))
 
@@ -53,7 +56,7 @@
           (= :kind/mytestkind3)))
   (is (-> {:value (-> {:some :data}
                       (kindly/consider :kind/mytestkind4))}
-          (kindly/advice [defaults/advice])
+          (kindly/advice [default-advice])
           :kind
           (= :kind/mytestkind4)
           is)))
@@ -63,35 +66,56 @@
 (deftest add-kind-test
   (is (-> {:value (-> {:some :data}
                       kind/mytestkind5)}
-          (kindly/advice [defaults/advice])
+          (kindly/advice [default-advice])
           :kind
           (= :kind/mytestkind5)))
   (is (-> {:value (-> {:some :data}
                       (kindly/consider kind/mytestkind5))}
-          (kindly/advice [defaults/advice])
+          (kindly/advice [default-advice])
           :kind
           (= :kind/mytestkind5))))
 
 (deftest form-metadata-test
   (is (-> {:form (read-string "^:kind/mytestkind6 (+ 1 2)")
            :value 3}
-          (kindly/advice [defaults/advice])
+          (kindly/advice [default-advice])
           :kind
           (= :kind/mytestkind6)))
   (is (-> {:form (read-string "^{:kind/mytestkind7 true} (+ 1 2)")
            :value 3}
-          (kindly/advice [defaults/advice])
+          (kindly/advice [default-advice])
           :kind
           (= :kind/mytestkind7))))
 
 (deftest default-test
   (is (-> {:value {:x 9}}
-          (kindly/advice [defaults/advice])
+          (kindly/advice [default-advice])
           :kind
           nil?)))
 
 (deftest hiccup-test
   (is (-> {:value [:h4 "hi"]}
-          (kindly/advice [defaults/advice])
+          (kindly/advice [default-advice])
           :kind
           (= :kind/hiccup))))
+
+(deftest hiccup-test
+  (is (-> {:value [:h4 "hi"]}
+          (kindly/advice [default-advice])
+          :kind
+          (= :kind/hiccup))))
+
+(deftest predicate-test
+  (let [advice (defaults/create-advice
+                {:predicate-kinds [[(fn [v] (= v 3))
+                                    :kind/three]
+                                   [(fn [v] (-> v type pr-str (= "java.lang.String")))
+                                    :kind/string]]})]
+    (is (-> {:value 3}
+            (kindly/advice [advice])
+            :kind
+            (= :kind/three)))
+    (is (-> {:value "abcd"}
+            (kindly/advice [advice])
+            :kind
+            (= :kind/string)))))

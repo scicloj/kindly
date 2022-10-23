@@ -23,6 +23,9 @@
              (-> value first keyword?))
         :kind/hiccup
         ;;
+        (var? value)
+        :kind/var
+        ;;
         :else
         nil))
 
@@ -67,6 +70,11 @@
               :kind (or (kind value form)
                         (check-predicate-kinds value
                                                predicate-kinds)))))))
+
+(extend-protocol kindness/Kindness
+  java.awt.image.BufferedImage
+  (kind [image]
+    :kind/buffered-image))
 
 (defn setup! []
   (kindly/set-only-advice! (create-advice)))

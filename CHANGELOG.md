@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [3-alpha4-SNAPSHOT]
+- default recognition of :kind/var, :kind/buffered-image
+
 ## [3-alpha3] - 2022-10-14
 - support for general predicates in default advice
 

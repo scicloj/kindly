@@ -99,11 +99,19 @@
           :kind
           (= :kind/hiccup))))
 
-(deftest hiccup-test
-  (is (-> {:value [:h4 "hi"]}
+(deftest var-test
+  (is (-> {:value #'clojure.core/reduce}
           (kindly/advice [default-advice])
           :kind
-          (= :kind/hiccup))))
+          (= :kind/var))))
+
+(import java.awt.image.BufferedImage)
+
+(deftest image-test
+  (is (-> {:value (BufferedImage. 4 4 BufferedImage/TYPE_INT_RGB)}
+          (kindly/advice [default-advice])
+          :kind
+          (= :kind/buffered-image))))
 
 (deftest predicate-test
   (let [advice (defaults/create-advice

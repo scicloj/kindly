@@ -93,11 +93,11 @@
           :kind
           nil?)))
 
-(deftest hiccup-test
-  (is (-> {:value [:h4 "hi"]}
-          (kindly/advice [default-advice])
-          :kind
-          (= :kind/hiccup))))
+;; (deftest hiccup-test
+;;   (is (-> {:value [:h4 "hi"]}
+;;           (kindly/advice [default-advice])
+;;           :kind
+;;           (= :kind/hiccup))))
 
 (deftest var-test
   (is (-> {:value #'clojure.core/reduce}

@@ -19,15 +19,15 @@
                  first))))
 
 (defn value->kind-by-logic [value]
-  (cond (and (vector? value)
-             (-> value first keyword?))
-        :kind/hiccup
-        ;;
-        (var? value)
-        :kind/var
-        ;;
-        :else
-        nil))
+  (cond ;; (and (vector? value)
+    ;;      (-> value first keyword?))
+    ;; :kind/hiccup
+    ;;
+    (var? value)
+    :kind/var
+    ;;
+    :else
+    nil))
 
 (defn value->kind [value]
   (or (-> value

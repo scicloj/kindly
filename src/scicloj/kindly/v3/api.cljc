@@ -31,5 +31,8 @@
 (defn add-advice! [advice]
   (swap! *advices conj advice))
 
+(defn set-advices! [advices]
+  (reset! *advices advices))
+
 (defn set-only-advice! [advice]
-  (reset! *advices [advice]))
+  (set-advices! [advice]))

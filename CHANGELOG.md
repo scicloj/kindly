@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
-## [3-alpha4-SNAPSHOT]
+## [3-alpha4] - 2022-10-23
 - default recognition of :kind/var, :kind/buffered-image
 - disabled default recognition of :kind/hiccup
 - slightly extended API

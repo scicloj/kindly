@@ -23,7 +23,8 @@
         (fn? kind) (consider value (kind))))
 
 (defn add-kind! [kind]
-  (impl/define-kind! kind))
+  (impl/define-kind! kind)
+  kind)
 
 (defn known-kinds []
   @impl/*kinds-set)

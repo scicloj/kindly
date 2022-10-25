@@ -1,9 +1,15 @@
+;; # Default advice
+
 (ns default-advice
   (:require [scicloj.kindly.v3.api :as kindly]
             [scicloj.kindly.v3.kind :as kind]
             [scicloj.kindly.v3.defaults :as defaults]))
 
 (defaults/setup!)
+
+(-> {:value {:x 9}}
+    kindly/advice)
+
 
 ;; ## Specifying kinds explicitly
 

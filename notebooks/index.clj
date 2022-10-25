@@ -9,7 +9,7 @@
 ;; - still alpha
 ;; - will soon be used  in community projects such as [ds4clj](https://scicloj.github.io/docs/community/groups/ds4clj/)
 ;; - currently supported by the [Clay](https://scicloj.github.io/viz.clj/) tool
-;; - will hopefully have adapters for Oz, Calva Notebooks, Portal, Clerk
+;; - will hopefully have adapters for Oz, Calva Notebooks, Portal, Clerk, etc.
 ;; - will hopefully be composable with [Casegamas](https://github.com/behrica/casegamas)
 ;; - maintained by Daniel Slutsky
 ;; - inspired by converstions with Carsten Behring, Lukas Domalga, Kira McLean, Christopher Small, Martin Kavalar, Tomasz Sulej, and many other friends
@@ -28,8 +28,9 @@
 ;;   - [scicloj.ml tutorials](https://github.com/scicloj/scicloj.ml-tutorials#tutorials-for-sciclojml) ([source](https://github.com/scicloj/scicloj.ml-tutorials/tree/main/src/scicloj/ml)) - written in [Notespace v3](https://github.com/scicloj/notespace/blob/master/doc/v3.md)
 ;;   - [Clojure2d color tutorial](https://clojure2d.github.io/clojure2d/docs/notebooks/index.html#/notebooks/color.clj) ([source](https://github.com/Clojure2D/clojure2d/blob/master/notebooks/color.clj)) - written in [Clerk](https://github.com/nextjournal/)
 ;;   - [Viz.clj](https://scicloj.github.io/viz.clj/) ([source](https://github.com/scicloj/viz.clj/blob/master/notebooks/intro.clj)) - written in Kindly using [Clay](https://scicloj.github.io/viz.clj/)
+;;   - ...
 ;;
-;; - thus, to use tutorials, the code needs adaptation to the tool of choice.
+;; - To use tutorials, the code needs adaptation to the tool of choice.
 ;;
 ;; ## Goal
 ;; - Allow writing copy-paste-friendly docs & tutorials (as Carsten Behring phrased it).
@@ -55,7 +56,7 @@
 
 ;; Let us define two advices.
 ;;
-;; One says that all numbers are of kind `:kind/three`:
+;; One says that all numbers are of kind `:kind/abcd`:
 
 (defn advice-number->abcd
   [{:as context
@@ -98,3 +99,11 @@
     advice-string->efgh])
 
   (kindly/advice {:value 3}))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+(require 'default-advice)
+
+#'default-advice/my-hiccup

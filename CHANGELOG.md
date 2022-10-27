@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file. This change
 
 ## [3-alpha5] - 2022-10-27
 - fixed user setup (removed user.clj)
+- cleanup of old version namespaces to avoid confusion
 
 ## [3-alpha4] - 2022-10-23
 - default recognition of :kind/var, :kind/buffered-image

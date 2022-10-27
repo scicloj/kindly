@@ -50,7 +50,10 @@
 (ns index
   (:require [scicloj.kindly.v3.api :as kindly]
             [scicloj.kindly.v3.kind :as kind]
-            [scicloj.kindly.v3.defaults :as defaults]))
+            [scicloj.kindly.v3.defaults :as defaults]
+            [scicloj.clay.v2.api :as clay]))
+
+(clay/start!)
 
 (defaults/setup!)
 

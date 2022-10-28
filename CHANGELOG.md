@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [3-alpha6] - 2022-10-28
+- removed the defaults part, to be extracted as a separate library
+
 ## [3-alpha5] - 2022-10-27
 - fixed user setup (removed user.clj)
 - cleanup of old version namespaces to avoid confusion

@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
-## [3-alpha7-SNAPSHOT]
+## [3-alpha7] - 2022-11-05
 - renaming advices->advisors
 
 ## [3-alpha6] - 2022-10-28

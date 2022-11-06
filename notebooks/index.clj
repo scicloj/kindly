@@ -1,12 +1,12 @@
 ;; # Kindly
 
 ;; Kindly is a proposed common ground for Clojure literate programming.
-
+;;
 ;; It is a small library for specifying in what kind of way things should be displayed.
-
+;;
 ;; It can offer its advice to various tools for data visualization and literate programming, with sensible defaults which are user customizable.
-
-;; It grew out of the [#visual-tools group](https://scicloj.github.io/docs/community/groups/visual-tools/) and has been inspired by converstions with Carsten Behring, Lukas Domalga, Kira McLean, Christopher Small, Martin Kavalar, Tomasz Sulej, and many other friends.
+;;
+;; It grew out of the [visual-tools group](https://scicloj.github.io/docs/community/groups/visual-tools/) and has been inspired by converstions with Carsten Behring, Lukas Domalga, Kira McLean, Christopher Small, Martin Kavalar, Tomasz Sulej, Ethan Miller, and many other friends.
 
 ;; ## Status
 
@@ -14,11 +14,14 @@
 ;;
 ;; - still alpha
 ;; - will soon be used  in community projects such as [ds4clj](https://scicloj.github.io/docs/community/groups/ds4clj/)
-;; - currently supported by the [Clay](https://scicloj.github.io/viz.clj/) tool
+;; - currently supported by the [Clay](https://scicloj.github.io/clay/) tool
 ;; - will hopefully have adapters for Oz, Calva Notebooks, Portal, Clerk, etc.
 ;; - will hopefully be composable with [Casegamas](https://github.com/behrica/casegamas)
 ;;
-;; ## The problem
+
+;; ## Rationale
+
+;; ### The problem
 
 ;; - Clojure tools for data visualization and literate programming have an [amazing diversity](https://scicloj.github.io/docs/resources/libs/#visual-tools-literate-programming-and-data-visualization).
 ;;
@@ -34,23 +37,32 @@
 ;;   - [Viz.clj](https://scicloj.github.io/viz.clj/) ([source](https://github.com/scicloj/viz.clj/blob/master/notebooks/intro.clj)) - written in Kindly using [Clay](https://scicloj.github.io/viz.clj/)
 ;;   - ...
 ;;
-;; - To use tutorials, the code needs adaptation to the tool of choice.
+;; - Thus, to use such tutorials in various tools, the code needs adaptation to the tool of choice.
 ;;
-;; ## Goal
+;; ### Goal
 ;; - Allow writing docs & tutorials which are copy-paste-friendly (a term phrased by Carsten Behring).
 ;; - A tutorial written today should just work with the tools of the future.
 ;;
 
-;; ## Conceptual solution
+;; ### Conceptual solution
 
 ;; - For a given context (code, form, value), a *kind* can be inferred (e.g., `:kind/hiccup`). The kind says how to display the value.
-;; - Kindly provides such kinds as advice for tools. Each tool may look into Kindly's advice and apply it when displaying values.
+;; - Kindly provides such kinds as advice for tools. Each tool may ask for Kindly's advice and apply it when displaying values.
 ;; - Thus, we decouple kind inference from kind application.
 ;; - Kind inference has sensible defaults, which are user-customizable.
 
+;; ## The bigger landscape
+
+;; Kindly is part of a stack of tools and libraries:
+
+;; - [Kindly](https://scicloj.github.io/kindly/) - a common ground for Clojure literate programming
+;; - [kindly-default](https://github.com/scicloj/kindly-default) - sensible defaults for Kindly
+;; - [Clay](https://scicloj.github.io/clay/) - a minimalistic Kindly-compatible fool for data visualization and literate programming
+;; - [Viz.clj](https://scicloj.github.io/viz.clj/) - a (WIP) Kindly-compatible library for literate programming on top of [Hanami](https://github.com/jsa-aerial/hanami)
+
 ;; ## Setup for this document
 
-;; First, let us run the relevant initializations to render this document.
+;; To demonstrate how to use Kindly with the [Clay](https://scicloj.github.io/clay/) to create the current document, let us first run the relevant initializations to render this document.
 ;; Typically, this part can be done in a `user.clj` file, once for a Clojure project.
 ;; Here, we do it explicitly at the beginning of the namespace.
 
@@ -65,24 +77,24 @@
 ;; We declare this page to be displayed by the Kindly default advice.
 (kindly-default/setup!)
 
-;; We initialize the [Clay](https://scicloj.github.io/clay/) tool for rendering this page.
+;; We initialize Clay for rendering this page.
 (clay/start!)
 
 ;; ## What Kindly does
 
 ;; Kindly's main entry point is the `kindly/advice` function. That is what tools use to ask for advice.
-;; The input to that function is the context of encountering a given value to be evaluated.
+;; The input to that function is the context of evaluation of a given form.
 ;;
-;; For example, if the user writes the code `(+ 1 2)` in their namespace, the relevant context is the form `(+ 1 2)` and the evaluation value `3`. In the current case, since this namespace uses the default kind inference, there is no special kind inferred.
+;; For example, if the user writes the code `(+ 1 2)` in their namespace, the relevant context is the form `(+ 1 2)` and the resulting value `3`. In the current case, since this namespace uses the default kind inference, there is no special kind inferred.
 
 (kindly/advice {:form '(+ 1 2)
                 :value 3})
 
-;; Behind the scenes, Kindly's advice is based on a global state holding a sequence of functions, called advisors. In the current case, it holds the default function, which was set up by the call to `(kindly-default/setup!)` above.
+;; Behind the scenes, Kindly's advice is based on a global state holding a sequence of functions called advisors. In the current case, it holds the default function, which was set up by the call to `(kindly-default/setup!)` above.
 
 scicloj.kindly.v3.api/*advisors
 
-;; Kindly simply runs those functions on the given context, one after the other.
+;; Kindly simply runs those functions on the given context.
 
 ;; To explore Kindly's behaviour, it is also possible to use it in a purely functional way, with an explicitly chosen sequence of advisors.  For example, let us use a simple advisor that assigns the kind `:kind/abcd` to all contexts:
 
@@ -94,17 +106,17 @@ scicloj.kindly.v3.api/*advisors
                 :value 3}
                [abcd-advisor])
 
-;; While this purely functional way is useful for debugging and testing, the recommended way to use Kindly is through the global `*advisors` atom. This way, the user can adjust the advisors to fit their needs (typically some version of the default), and the various tools would not change that, but rather respect the advice derived from the global user's definitions.
+;; While this purely functional way is useful for debugging and testing, the recommended way to use Kindly is through the global `*advisors` atom. This way, the user can adjust the advisors to fit their needs (typically some version of the default), and the various tools would simply use the advice based on that user choice.
 
 ;; ## Using Kindly
 
-;; We will describe Kindly's usage in three cases:
-;; - Creating a tool (or a tool adapter) which supports Kindly's advice.
-;; - Using Kindly for writing simple notes (tutorial/documentation/blog-post/etc.).
-;; - Using Kindly in a custom way (with user-defined kind inference).
+;; We will describe Kindly's usage in three different cases:
+;; - creating a tool (or a tool adapter) which supports Kindly's advice
+;; - using Kindly for writing simple notes (tutorial/documentation/blog-post/etc.)
+;; - using Kindly for notes in a custom way (with user-defined kind inference)
 
 ;; ### Kindly for tool makers
-;; Various tools for data visualization and literate programming can potentially support Kindly, and thus display values by its advice.
+;; Various tools for data visualization and literate programming can ask for Kindly's advice.
 ;;
 ;; The single entry point for doing that is the `kindly/advice` function.
 ;;
@@ -114,10 +126,10 @@ scicloj.kindly.v3.api/*advisors
 (kindly/advice {:form '(+ 1 2)
                 :value 3})
 
-;; Since the advice did not assign any kind in this case, the tool will keep its usual behaviour (e.g., just displaying the text "`3`").
+;; Since the advice did not assign any kind in this case, the tool will keep its usual behaviour (probably just displaying the text "`3`").
 ;;
 ;; #### Partial information
-;; If any of the form or value parts is not availabile for some reason, then advice would rely on the partial information given. For some tools, which lack the form information, this maybe useful and allow them to follow sensible advice on most cases.
+;; If any of the form or value parts is not availabile for some reason, the advice would rely on the partial information given. For some tools, which lack the form information, this can be useful and allow them to follow sensible advice in most cases.
 ;; #### Another example
 ;;
 ;; For another example, assume the user creates an image.
@@ -130,24 +142,24 @@ scicloj.kindly.v3.api/*advisors
 ;; In this case, the default advice recognizes the `BufferedImage` object and proposes the `:kind/buffered-image` kind.
 ;;
 ;; #### Kindly as a dependency
-;; Tools can include Kindly as a dependency, but should **avoid** including [kindly-default](github.com/scicloj/kindly-default). This way, notes written with old versions of kindly-default will keep working correctly with new versions of Kindly.
+;; Tools can include Kindly as a dependency, but should **avoid** including [kindly-default](github.com/scicloj/kindly-default). This way, notes written with old versions of kindly-default will keep working correctly with tools using new versions of Kindly.
 
 ;; ### Kindly for common users
 
 ;; Users will typically write their notes using Kindly's default advice, which is defined in the [kindly-default](github.com/scicloj/kindly-default) library.
 
 ;; #### Setup
-;; To set it up, one only needs to call `(kindly-default/setup!)` as we did above. Typically, this can be done once in a project, e.g., in a `user.clj` ile.
+;; To set it up, one only needs to call `(kindly-default/setup!)` as we did above. Typically, this can be done once in a project, e.g., in a `user.clj` file.
 
-;; Let us see how the default behaviour of kindly infers kinds.
+;; Let us see how the default behaviour of Kindly infers kinds.
 
-;; #### How the default advice behaves
+;; #### The default advice
 
 ;; Most of the time, users will not need to care about Kindly's presence, as kindly-default simply tries to act sensibly. Anyway, here are the main details of its behaviour and options to affet it.
 
 ;; ##### Values with no special kind information
 
-;; Many values would not get any inferred kind.
+;; For many values, no kind is inferred.
 
 (-> {:value {:x 9}}
     kindly/advice)
@@ -156,7 +168,7 @@ scicloj.kindly.v3.api/*advisors
 
 {:x 9}
 
-;; ##### Values with default kind inference
+;; ##### Values with default kind
 
 ;; Kindly's default advice does attach some sensible default kind to certain types of values.
 
@@ -179,6 +191,8 @@ big-big-orange-three
 
 ;; ##### Assigning metadata
 
+;; The kind can be specified by varying the value's metadata:
+
 (-> big-big-orange-three
     (vary-meta assoc :kindly/kind :kind/hiccup))
 
@@ -192,7 +206,7 @@ big-big-orange-three
 ;; ##### Using a kind function
 
 
-;; For kinds which have been added to the system using the `kindly/add-kind!` function, there is a dedicated convenience function at the `kind` namespace to apply them as metadata.
+;; For kinds which have been added to the system using the `kindly/add-kind!` function, there is a dedicated convenience function at the `kind` namespace to specify them as metadata.
 ;;
 ;; For example, since `(kindly/add-kind! :kind/hiccup)` has been called in the kindly-default library, we can do the following:
 
@@ -201,21 +215,25 @@ big-big-orange-three
 
 ;; ##### Using code metadata
 
-;; It is also possible to attach metadata to the evaluated form (rather than the value):
+;; It is also possible to attach metadata to the form to be evaluated (rather than the resulting value):
 
 ^:kind/hiccup
 big-big-orange-three
 
+^{:kind/hiccup true}
+big-big-orange-three
+
+
 ;; ### Kindly for sophisticated users
 
-;; Users looking for different kind inference can set the list of advisors using `kindly/set-advisors!`
+;; Users looking for different kind inference can define it in various ways.
 
-;; #### Advices from scratch
+;; #### Advisors from scratch
 
-;; Let us look into a few basic examples defining advisors.
+;; It is possible to set the list of advisors used for advice using `kindly/set-advisors!`
 ;;
-;; For the convenience of this tutorial, we will use them through the purely functional version of `kindly/advice`, rather than changing Kindly's global state.
-
+;; Let us look into a few basic examples defining advisors. For the convenience of this tutorial, we will use these advisors through the purely functional version of `kindly/advice`, rather than changing Kindly's global state.
+;;
 ;; The following advisor assigns `:kind/hiccup` to values of the `[:div ...]` format.
 
 (defn div-value-is-hiccup-advisor
@@ -236,22 +254,22 @@ big-big-orange-three
     (assoc context :kind :kind/hiccup)
     context))
 
-;; Let us use these two advices in some contexts:
-
-;; A relevant value:
+;; Let us use these two advices in some contexts.
+;;
+;; The value is relevant:
 
 (kindly/advice {:value [:div "hello"]}
                [div-value-is-hiccup-advisor
                 span-form-is-hiccup-advisor])
 
-;; A relevant form:
+;; The form is relevant:
 
 (kindly/advice {:form [:span "hello"]
                 :value [:span "hello"]}
                [div-value-is-hiccup-advisor
                 span-form-is-hiccup-advisor])
 
-;; Neither is relevant:
+;; Neither the form nor the value is relevant:
 
 (kindly/advice {:form '(into [:span] ["hello"])
                 :value [:span "hello"]}
@@ -277,11 +295,12 @@ big-big-orange-three
 
 ;; ##### Adding an advisor to a list including the default advisor
 
-;; The default advice is defined by an advisor that can be generated by `(kindly-default/create-advisor)`. We can use that default advisor together with others. For example:
+;; The default advice is defined by an advisor generated by `(kindly-default/create-advisor)`. We can use that default advisor together with others. For example:
 
-(kindly/advice {:value [:div "hello"]}
-               [div-value-is-hiccup-advisor
-                (kindly-default/create-advisor)])
+(kindly/advice
+ {:value [:div "hello"]}
+ [div-value-is-hiccup-advisor
+  (kindly-default/create-advisor)])
 
 ;; ##### Generating a variation of the default advisor
 
@@ -294,5 +313,6 @@ big-big-orange-three
                               (-> v first (= :div))))
                        :kind/hiccup]]}))
 
-(kindly/advice {:value [:div "hello"]}
-               [a-variation-of-the-default-advisor])
+(kindly/advice
+ {:value [:div "hello"]}
+ [a-variation-of-the-default-advisor])

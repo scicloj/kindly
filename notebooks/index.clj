@@ -51,9 +51,9 @@
 ;; - Thus, we decouple kind inference from kind application.
 ;; - Kind inference has sensible defaults, which are user-customizable.
 
-;; ## The bigger landscape
+;; ## The landscape
 
-;; Kindly is part of projects:
+;; Kindly is part of a stack related projects:
 
 ;; - [Kindly](https://scicloj.github.io/kindly/) - a common ground for Clojure literate programming
 ;; - [kindly-default](https://github.com/scicloj/kindly-default) - sensible defaults for Kindly

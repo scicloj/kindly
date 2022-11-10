@@ -1,47 +1,48 @@
 (ns scicloj.kindly.v3.api
   (:require [scicloj.kindly.v3.impl :as impl]))
 
-(def *advisors
-  (atom []))
+(def KINDS {:kind/clojure.core.map (fn [{:keys [value]}] (map? value))
+
+            :kind/clojure.core.string (fn [{:keys [value]}] (string? value))
+
+            :kind/tech.ml.dataset (fn [{:keys [value]}] ((requiring-resolve 'tech.v3.dataset/dataset?) value))
+
+            :kind/vega.org-vega-lite (fn [{:keys [value]}]  (= :kind/vega.org-vega-lite
+                                                             (-> value meta :kind)))
+
+            :kind/www.latex-project.org-latex (fn [{:keys [form value]}]
+                                                (or
+                                                 (= :kind/www.latex-project.org-latex
+                                                    (-> form meta :kind))
+                                                 (= :kind/www.latex-project.org-latex
+                                                    (-> value meta :kind))))})
+
+
+
 
 (defn advice
-  ([context]
-   (advice context @*advisors))
-  ([{:as context}
-    advisors]
-   (-> (loop [results []
-              remaining-advisors advisors]
-         (if-let [advisor1 (first remaining-advisors)]
-           (let [advisor-output (advisor1 context)]
-             (recur
-              (cond
-                ;; the advisor returned a single context map
-                (map? advisor-output)
-                (conj results advisor-output)
-                ;; the advisor returned multiple context maps
-                (sequential? advisor-output)
-                (concat results advisor-output))
-              (rest remaining-advisors)))
-           results))
-       seq
-       (or [context]))))
+  "Advises what `kind` of data is passed in.
+  context can have keys:
+  `value` the data value to advice on
+  `form` the form which created the value
 
-(defn consider [value kind]
-  (cond (keyword? kind) (impl/attach-kind-to-value value kind)
-        (fn? kind) (consider value (kind))))
+  Kindly will guess which kind of value it is.
+  It will return a map, which keys are a strict subset of all kinds known to Kindly,
+  (returned by `kinds` function).
 
-(defn add-kind! [kind]
-  (impl/define-kind! kind)
-  kind)
+  "
+  [context]
+  (->>
+   (map
+    (fn [kind pred] (when (pred context)
+                     {:kind kind}))
+    (keys KINDS)
+    (vals KINDS))
+   (remove nil?)))
 
-(defn known-kinds []
-  @impl/*kinds-set)
 
-(defn add-advisor! [advisor]
-  (swap! *advisors conj advisor))
+(defn kinds []
+  (keys KINDS))
 
-(defn set-advisors! [advisors]
-  (reset! *advisors advisors))
 
-(defn set-only-advisor! [advisor]
-  (set-advisors! [advisor]))
+(requiring-resolve 'tech.v3.dataset/dataset?)

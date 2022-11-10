@@ -1,73 +1,64 @@
 (ns scicloj.kindly.v3.api-test
   (:require [scicloj.kindly.v3.api :as kindly]
-            [scicloj.kindly.v3.kind :as kind]
+            [tech.v3.dataset :as ds]
+
             [clojure.test :refer [deftest is]]))
 
-(deftest no-advisors-test
-  (let [original-context {:code "(+ 1 2)"
-                          :value 3}]
-    (-> original-context
-        (kindly/advice [])
-        (= [original-context])
-        is)))
+(deftest map-string
+  (is (=  [{:kind  :kind/clojure.core.string}]
+          (kindly/advice {:value "string"})))
+  (is (=  [{:kind :kind/clojure.core.map}]
+          (kindly/advice {:value {}}))))
 
-(deftest custom-advisor-test
-  (let [original-context {:code "(+ 1 2)"
-                          :value 3}
-        desired-context {:value [:h1 "This is the value 3!"]
-                         :code "(+ 1 2) ; computation!"
-                         :kind :kind/hiccup}
-        advisor (fn [{:as context
-                      :keys [value code]}]
-                  (if (= value 3)
-                    desired-context
-                    context))]
-    (-> original-context
-        (kindly/advice [advisor])
-        (= [desired-context])
-        is)))
+(deftest unknown
+  (is (=  []
+          (kindly/advice {:value nil}))))
 
-(deftest multiple-kinds-advisor-test
-  (let [original-context {:code "(+ 1 2)"
-                          :value 3}
-        desired-contexts [{:value [:h1 "This is the value 3!"]
-                           :code "(+ 1 2) ; computation!"
-                           :kind :kind/hiccup}
-                          {:value {:the-value-is 3}
-                           :code "(+ 1 2) ; computation!"
-                           :kind :kind/pprint}]
-        advisor (fn [{:as context
-                      :keys [value code]}]
-                  (if (= value 3)
-                    desired-contexts
-                    context))]
-    (-> original-context
-        (kindly/advice [advisor])
-        (= desired-contexts)
-        is)))
 
-(deftest multiple-advisors-test
-  (let [original-context {:code "(+ 1 2)"
-                          :value 3}
-        desired-context1 {:value [:h1 "This is the value 3!"]
-                          :code "(+ 1 2) ; computation!"
-                          :kind :kind/hiccup}
-        desired-context2 {:value [:h1 "This is the value 3!"]
-                          :code "(+ 1 2) ; computation!!"
-                          :kind :kind/hiccup}
-        advisor1 (fn [{:as context
-                       :keys [value code]}]
-                   (if (= value 3)
-                     desired-context1
-                     context))
-        advisor2 (fn [{:as context
-                       :keys [value code]}]
-                   (if (= value 3)
-                     desired-context2
-                     context))]
-    (-> original-context
-        (kindly/advice [advisor1
-                        advisor2])
-        (= [desired-context1
-            desired-context2])
-        is)))
+(def vl {:$schema "https://vega.github.io/schema/vega-lite/v5.json"
+         :data {:url "data/cars.json"}
+         :description "A scatterplot showing horsepower and miles per gallons for various cars."
+         :encoding {:x {:field "Horsepower" :type "quantitative"}
+                    :y {:field "Miles_per_Gallon" :type "quantitative"}}
+         :mark "point"})
+
+(deftest vltest
+  ;;  is a map and vl
+  (is (= [{:kind :kind/clojure.core.map}
+          {:kind :kind/vega.org-vega-lite}]
+
+         (kindly/advice {:value
+                         (with-meta
+                           vl
+                           {:kind :kind/vega.org-vega-lite})}))))
+
+(deftest dataset
+  (is (= [{:kind :kind/clojure.core.map}
+          {:kind :kind/tech.ml.dataset}]
+         (kindly/advice {:value (ds/->dataset {})}))))
+
+
+(deftest tex-with-form-metadata
+  (is (= [{:kind :kind/clojure.core.string}
+          {:kind :kind/www.latex-project.org-latex}]
+         (kindly/advice {:value "\\alpha"
+                         :form (with-meta
+                                 '(def tex "\\alpha")
+                                 {:kind :kind/www.latex-project.org-latex})}))))
+
+
+
+(deftest unknown-ignored
+  (is (= [{:kind :kind/clojure.core.map}]
+         (kindly/advice {:value
+                         (with-meta
+                           vl
+                           {:kind :kind/unknown})}))))
+
+(comment
+  (kindly/kinds))
+  ;; => (:kind/clojure.core.map
+  ;;     :kind/clojure.core.string
+  ;;     :kind/tech.ml.dataset
+  ;;     :kind/vega.org-vega-lite
+  ;;     :kind/www.latex-project.org-latex)

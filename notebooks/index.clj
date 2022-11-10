@@ -95,7 +95,7 @@
 
 scicloj.kindly.v3.api/*advisors
 
-;; Kindly simply runs those functions on the given context.
+;; Kindly simply runs those functions on the given context. Each function may return a revised context (possibly including `:kind` information), or a list of contexts. Kidnly then returns a list of all contexts returned.
 
 ;; To explore Kindly's behaviour, it is also possible to use it in a purely functional way, with an explicitly chosen sequence of advisors.  For example, let us use a simple advisor that assigns the kind `:kind/abcd` to all contexts:
 
@@ -131,11 +131,16 @@ scicloj.kindly.v3.api/*advisors
 ;;
 ;; #### Partial information
 ;; If any of the form or value parts is not availabile for some reason, the advice would rely on the partial information given. For some tools, which lack the form information, this can be useful and allow them to follow sensible advice in most cases.
+
+;; #### Fallback and multiple contexts
+;; If the tool does not know how to handle Kindly's advice, it is encouraged to fall back to its usual behaviour, possibly oferring a warning to the user.
+;;
+;; If the list of contexts returned by Kindly cotains more than one context, the tool is encouraged to use the first one, and fall back to the others by their order.
+
 ;; #### Another example
 ;;
 ;; For another example, assume the user creates an image.
 ;;
-
 
 (kindly/advice {:value (java.awt.image.BufferedImage.
                         32 32 BufferedImage/TYPE_INT_RGB)})

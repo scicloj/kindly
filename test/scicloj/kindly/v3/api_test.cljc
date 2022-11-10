@@ -8,7 +8,7 @@
                           :value 3}]
     (-> original-context
         (kindly/advice [])
-        (= original-context)
+        (= [original-context])
         is)))
 
 (deftest custom-advisor-test
@@ -24,7 +24,26 @@
                     context))]
     (-> original-context
         (kindly/advice [advisor])
-        (= desired-context)
+        (= [desired-context])
+        is)))
+
+(deftest multiple-kinds-advisor-test
+  (let [original-context {:code "(+ 1 2)"
+                          :value 3}
+        desired-contexts [{:value [:h1 "This is the value 3!"]
+                           :code "(+ 1 2) ; computation!"
+                           :kind :kind/hiccup}
+                          {:value {:the-value-is 3}
+                           :code "(+ 1 2) ; computation!"
+                           :kind :kind/pprint}]
+        advisor (fn [{:as context
+                      :keys [value code]}]
+                  (if (= value 3)
+                    desired-contexts
+                    context))]
+    (-> original-context
+        (kindly/advice [advisor])
+        (= desired-contexts)
         is)))
 
 (deftest multiple-advisors-test
@@ -49,5 +68,6 @@
     (-> original-context
         (kindly/advice [advisor1
                         advisor2])
-        (= desired-context1)
+        (= [desired-context1
+            desired-context2])
         is)))

@@ -9,14 +9,22 @@
    (advice context @*advisors))
   ([{:as context}
     advisors]
-   (loop [current-context context
-          remaining-advisors advisors]
-     (if (:kind current-context)
-       current-context
-       (if-let [advisor1 (first remaining-advisors)]
-         (recur (advisor1 context)
-                (rest remaining-advisors))
-         current-context)))))
+   (-> (loop [results []
+              remaining-advisors advisors]
+         (if-let [advisor1 (first remaining-advisors)]
+           (let [advisor-output (advisor1 context)]
+             (recur
+              (cond
+                ;; the advisor returned a single context map
+                (map? advisor-output)
+                (conj results advisor-output)
+                ;; the advisor returned multiple context maps
+                (sequential? advisor-output)
+                (concat results advisor-output))
+              (rest remaining-advisors)))
+           results))
+       seq
+       (or [context]))))
 
 (defn consider [value kind]
   (cond (keyword? kind) (impl/attach-kind-to-value value kind)

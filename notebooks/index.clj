@@ -282,6 +282,33 @@ big-big-orange-three
                [div-value-is-hiccup-advisor
                 span-form-is-hiccup-advisor])
 
+;; #### Advisors returning multiple contexts
+
+;; Sometimes, we may want an advisor to pass more than one option to the tool, so that tools can fall back to the second option if they do not support the first.
+
+;;
+;; Here is an example: for Vega plots, the first option would be to treat the value as Vega, and the second would be to display a message clarifying that Vega is not supported.
+
+(defn two-contexts-for-vega
+  [{:as context
+    :keys [value]}]
+  (if (-> value meta :kindly/kind (= :kind/vega))
+    [(assoc context
+            :kind :kind/vega)
+     (assoc context
+            :value [:p "Vega is not supported."]
+            :kind :kind/hiccup)]
+    context))
+
+(defn my-vega-plot []
+  (-> {:data []}
+      kind/vega))
+
+(kindly/advice {:form '(my-vega-plot)
+                :value (my-vega-plot)}
+               [two-contexts-for-vega])
+
+
 ;; #### Extending the default advice
 
 ;; Here are a few ways for users to extend the behaviour of Kindly's default advice.

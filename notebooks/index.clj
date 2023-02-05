@@ -10,12 +10,14 @@
 
 ;; ## Status
 
-;; (v3, 2022-11-04)
+;; (v3, 2023-02-05)
 ;;
 ;; - still alpha
 ;; - will soon be used  in community projects such as [ds4clj](https://scicloj.github.io/docs/community/groups/ds4clj/)
-;; - currently supported by the [Clay](https://scicloj.github.io/clay/) tool
-;; - will hopefully have adapters for Oz, Calva Notebooks, Portal, Clerk, etc.
+;; - currently supported tools:
+;;   - [Clay](https://scicloj.github.io/clay/)
+;;   - [Clerk](https://clerk.vision/) -- partially supported -- through the [kind-clerk](https://github.com/scicloj/kind-clerk) adapter
+;; - will hopefully have adapters for Oz, Calva Notebooks, Portal, Quarto, etc.
 ;; - will hopefully be composable with [Casegamas](https://github.com/behrica/casegamas)
 ;;
 

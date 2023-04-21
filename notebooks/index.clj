@@ -60,7 +60,7 @@
 ;; - [Kindly](https://scicloj.github.io/kindly/) - a common ground for Clojure literate programming
 ;; - [kindly-default](https://github.com/scicloj/kindly-default) - sensible defaults for Kindly
 ;; - [kindly-noted](https://github.com/scicloj/kindly-noted) - a common space for sharing Kindly-compatible notes
-;; - [Clay](https://scicloj.github.io/clay/) - a minimalistic Kindly-compatible fool for data visualization and literate programming
+;; - [Clay](https://scicloj.github.io/clay/) - a minimalistic Kindly-compatible tool for data visualization and literate programming
 ;; - [Viz.clj](https://scicloj.github.io/viz.clj/) - a (WIP) Kindly-compatible library for literate programming on top of [Hanami](https://github.com/jsa-aerial/hanami)
 
 ;; ## Setup for this document

@@ -10,14 +10,14 @@
 
 ;; ## Status
 
-;; (v3, 2023-03-17)
+;; (v3, 2023-05-31)
 ;;
 ;; - still alpha
 ;; - will soon be used  in community projects such as [ds4clj](https://scicloj.github.io/docs/community/groups/ds4clj/)
 ;; - currently supported tools:
 ;;   - [Clay](https://scicloj.github.io/clay/)
 ;;   - [Clerk](https://clerk.vision/) -- partially supported -- through the [kind-clerk](https://github.com/scicloj/kind-clerk) adapter
-;;   - [Portal](https://clerk.vision/) -- WIP -- through the [kind-portal](https://github.com/scicloj/kind-portal) adapter
+;;   - [Portal](https://github.com/djblue/portal/) -- WIP -- through the [kind-portal](https://github.com/scicloj/kind-portal) adapter
 ;;   - [Quarto](https://quarto.org/) -- proof-of-concept working -- through Clay
 ;; - working on adapters for Calva Notebooks, Portal
 ;;

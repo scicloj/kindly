@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [4-alpha1-SNAPSHOT]
+- simplifying
+- bringing some parts of kindly-default to kindly itself
+
 ## [3-alpha8] - 2022-11-10
 - support for returning multiple contexts as advice
 

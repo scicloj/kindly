@@ -1,5 +1,6 @@
-(ns scicloj.kindly.v3.api
-  (:require [scicloj.kindly.v3.impl :as impl]))
+(ns scicloj.kindly.v4.api
+  (:require [scicloj.kindly.v4.impl :as impl]
+            [scicloj.kindly.v4.advisors :as advisors]))
 
 (def *advisors
   (atom []))
@@ -13,15 +14,8 @@
               remaining-advisors advisors]
          (if-let [advisor1 (first remaining-advisors)]
            (let [advisor-output (advisor1 context)]
-             (recur
-              (cond
-                ;; the advisor returned a single context map
-                (map? advisor-output)
-                (conj results advisor-output)
-                ;; the advisor returned multiple context maps
-                (sequential? advisor-output)
-                (concat results advisor-output))
-              (rest remaining-advisors)))
+             (recur (conj results advisor-output)
+                    (rest remaining-advisors)))
            results))
        seq
        (or [context]))))
@@ -30,12 +24,21 @@
   (cond (keyword? kind) (impl/attach-kind-to-value value kind)
         (fn? kind) (consider value (kind))))
 
+(def *kinds-set (atom #{}))
+
 (defn add-kind! [kind]
-  (impl/define-kind! kind)
+  (swap! *kinds-set conj kind)
+  (intern 'scicloj.kindly.v3.kind
+          (symbol (name kind))
+          (impl/kind-as-a-fn kind))
   kind)
 
 (defn known-kinds []
-  @impl/*kinds-set)
+  (->> 'scicloj.kindly.v4.kind
+       find-ns
+       ns-publics
+       vals
+       (map #(%))))
 
 (defn add-advisor! [advisor]
   (swap! *advisors conj advisor))
@@ -45,3 +48,5 @@
 
 (defn set-only-advisor! [advisor]
   (set-advisors! [advisor]))
+
+(set-only-advisor! (advisors/default-advisor))

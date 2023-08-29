@@ -1,24 +1,50 @@
 (ns scicloj.kindly.v4.advisors
-  (:require [scicloj.kindly.v4.impl :as impl]))
+  (:require [scicloj.kindly.v4.context :as context]))
 
-(defn predicate-based-advisor
-  ([{:keys [predicate-kinds]}]
-   (fn [{:as context :keys [form value kind]}]
-     (assoc context
-            :kind
-            (or kind
-                (impl/form->kind form)
-                (impl/value->kind value)
-                (impl/check-predicate-kinds value
-                                            predicate-kinds))))))
+(defn advice->recommended-kind [advice]
+  (-> advice
+      first
+      first))
 
-(def default-predicate-kinds
+(defn update-context [context advisor]
+  (if-let [advice (advisor context)]
+    (-> context
+        (update :kind
+                (fn [kind]
+                  (or kind
+                      (advice->recommended-kind advice))))
+        (update :advice
+                concat advice))
+    context))
+
+(defn meta-kind-advisor [{:keys [meta-kind]
+                          :as context}]
+  (when meta-kind
+    [[meta-kind {:reason :metadata}]]))
+
+(defn predicate-based-advisor [{:keys [predicate-kinds]}]
+  (fn [{:keys [value]
+        :as context}]
+    (->> predicate-kinds
+         (map (fn [[predicate kind]]
+                (when (predicate value)
+                  [kind {:reason :predicate}])))
+         (remove nil?)
+         seq)))
+
+(def default-predicate-kinds-v1
   [[(fn [v]
       (-> v
           type
           pr-str
-          (= "tech.v3.dataset.impl.dataset.Dataset")))
+          (= "tech.v3.dataset.context.dataset.Dataset")))
     :kind/dataset]
+   [(fn [v]
+      (-> v
+          type
+          pr-str
+          (= "java.awt.image.BufferedImage")))
+    :kind/buffered-image]
    [(fn [v]
       (some-> v
               meta
@@ -29,14 +55,10 @@
    [map? :kind/map]
    [set? :kind/set]
    [vector? :kind/vector]
-   [sequential? :kind/seq]
-   [(fn [v]
-      (-> v
-          type
-          pr-str
-          (= "java.awt.image.BufferedImage")))
-    :kind/buffered-image]])
+   [sequential? :kind/seq]])
 
-(defn default-advisor []
-  (predicate-based-advisor
-   {:predicate-kinds default-predicate-kinds}))
+
+(def default-advisors
+  [meta-kind-advisor
+   (predicate-based-advisor
+    {:predicate-kinds default-predicate-kinds-v1})])

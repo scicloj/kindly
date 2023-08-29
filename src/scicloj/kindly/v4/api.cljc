@@ -1,44 +1,34 @@
 (ns scicloj.kindly.v4.api
-  (:require [scicloj.kindly.v4.impl :as impl]
-            [scicloj.kindly.v4.advisors :as advisors]))
+  (:require [scicloj.kindly.v4.fn :as fn]
+            [scicloj.kindly.v4.advisors :as advisors]
+            [scicloj.kindly.v4.context :as context]
+            [scicloj.kindly.v4.kind :as kind]))
 
 (def *advisors
   (atom []))
 
-(defn advice
+(defn advise
   ([context]
-   (advice context @*advisors))
-  ([{:as context}
-    advisors]
-   (-> (loop [results []
-              remaining-advisors advisors]
-         (if-let [advisor1 (first remaining-advisors)]
-           (let [advisor-output (advisor1 context)]
-             (recur (conj results advisor-output)
-                    (rest remaining-advisors)))
-           results))
-       seq
-       (or [context]))))
+   (advise context @*advisors))
+  ([context advisors]
+   (-> context
+       context/complete
+       (#(reduce advisors/update-context
+                 %
+                 advisors))
+       (update :advice vec))))
 
 (defn consider [value kind]
-  (cond (keyword? kind) (impl/attach-kind-to-value value kind)
+  (cond (keyword? kind) (fn/attach-kind-to-value value kind)
         (fn? kind) (consider value (kind))))
 
-(def *kinds-set (atom #{}))
-
-(defn add-kind! [kind]
-  (swap! *kinds-set conj kind)
-  (intern 'scicloj.kindly.v3.kind
-          (symbol (name kind))
-          (impl/kind-as-a-fn kind))
-  kind)
-
-(defn known-kinds []
+(def known-kinds
   (->> 'scicloj.kindly.v4.kind
        find-ns
        ns-publics
        vals
-       (map #(%))))
+       (map #(%))
+       set))
 
 (defn add-advisor! [advisor]
   (swap! *advisors conj advisor))
@@ -49,4 +39,4 @@
 (defn set-only-advisor! [advisor]
   (set-advisors! [advisor]))
 
-(set-only-advisor! (advisors/default-advisor))
+(set-advisors! advisors/default-advisors)

@@ -8,6 +8,10 @@ It is intented to kindly advise various tools how to display things, with sensib
 
 [Documentation](https://scicloj.github.io/kindly/)
 
+## Status
+v3 (alpha stage) is currently in use in some projects.
+It will soon be replaced by v4.
+
 ## License
 
 Copyright © 2021 Scicloj

@@ -1,18 +1,18 @@
 (ns scicloj.kindly.v4.api
   (:require [scicloj.kindly.v4.fn :as fn]
             [scicloj.kindly.v4.advisors :as advisors]
-            [scicloj.kindly.v4.context :as context]
+            [scicloj.kindly.v4.completion :as completion]
             [scicloj.kindly.v4.kind :as kind]))
 
 (def *advisors
-  (atom []))
+  (atom advisors/default-advisors))
 
 (defn advise
   ([context]
    (advise context @*advisors))
   ([context advisors]
    (-> context
-       context/complete
+       completion/complete
        (#(reduce advisors/update-context
                  %
                  advisors))
@@ -38,5 +38,3 @@
 
 (defn set-only-advisor! [advisor]
   (set-advisors! [advisor]))
-
-(set-advisors! advisors/default-advisors)

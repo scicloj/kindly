@@ -1,22 +1,5 @@
 (ns scicloj.kindly.v4.api
-  (:require [scicloj.kindly.v4.fn :as fn]
-            [scicloj.kindly.v4.advisors :as advisors]
-            [scicloj.kindly.v4.completion :as completion]
-            [scicloj.kindly.v4.kind :as kind]))
-
-(def *advisors
-  (atom advisors/default-advisors))
-
-(defn advise
-  ([context]
-   (advise context @*advisors))
-  ([context advisors]
-   (-> context
-       completion/complete
-       (#(reduce advisors/update-context
-                 %
-                 advisors))
-       (update :advice vec))))
+  (:require [scicloj.kindly.v4.kind :as kind]))
 
 (defn consider [value kind]
   (cond (keyword? kind) (fn/attach-kind-to-value value kind)
@@ -29,12 +12,3 @@
        vals
        (map #(%))
        set))
-
-(defn add-advisor! [advisor]
-  (swap! *advisors conj advisor))
-
-(defn set-advisors! [advisors]
-  (reset! *advisors advisors))
-
-(defn set-only-advisor! [advisor]
-  (set-advisors! [advisor]))

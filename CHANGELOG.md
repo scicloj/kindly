@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [4-alpha2-SNAPSHOT]
+- adding kinds
+
 ## [4-alpha1] - 2023-08-31
 - making kindly minimal - just about kinds
 

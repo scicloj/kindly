@@ -34,6 +34,9 @@
 (def md
   (fn/kind-as-a-fn :kind/md))
 
+(def code
+  (fn/kind-as-a-fn :kind/code))
+
 (def hiccup
   (fn/kind-as-a-fn :kind/hiccup))
 

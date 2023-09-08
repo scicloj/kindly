@@ -1,56 +1,37 @@
 (ns scicloj.kindly.v4.kind
   (:require [scicloj.kindly.v4.fn :as fn]))
 
-(def hidden
-  (fn/kind-as-a-fn :kind/hidden))
+(fn/defkinds
 
-(def pprint
-  (fn/kind-as-a-fn :kind/pprint))
+  ;; simple behaviours
+  pprint
+  hidden
 
-(def println
-  (fn/kind-as-a-fn :kind/println))
+  ;; web dev
+  hiccup
+  reagent
 
-(def test
-  (fn/kind-as-a-fn :kind/test))
+  ;; data visualization formats
+  md
+  code
+  vega
+  vega-lite
+  echarts
+  cytoscape
 
-(def var
-  (fn/kind-as-a-fn :kind/var))
+  ;; specific types
+  image
+  dataset
 
-(def map
-  (fn/kind-as-a-fn :kind/map))
+  ;; clojure specific
+  var
+  test
 
-(def set
-  (fn/kind-as-a-fn :kind/set))
+  ;; plain structures
+  seq
+  vector
+  set
+  map
 
-(def vector
-  (fn/kind-as-a-fn :kind/vector))
-
-(def seq
-  (fn/kind-as-a-fn :kind/seq))
-
-(def table
-  (fn/kind-as-a-fn :kind/table))
-
-(def md
-  (fn/kind-as-a-fn :kind/md))
-
-(def code
-  (fn/kind-as-a-fn :kind/code))
-
-(def hiccup
-  (fn/kind-as-a-fn :kind/hiccup))
-
-(def reagent
-  (fn/kind-as-a-fn :kind/reagent))
-
-(def vega
-  (fn/kind-as-a-fn :kind/vega))
-
-(def vega-lite
-  (fn/kind-as-a-fn :kind/vega-lite))
-
-(def cytoscape
-  (fn/kind-as-a-fn :kind/cytoscape))
-
-(def echarts
-  (fn/kind-as-a-fn :kind/echarts))
+  ;; other recursive structures
+  table)

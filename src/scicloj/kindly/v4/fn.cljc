@@ -6,8 +6,18 @@
     (attach-kind-to-value [value] kind)))
 
 (defn kind-as-a-fn [kind]
-  (fn
-    ([]
-     kind)
-    ([value]
-     (attach-kind-to-value value kind))))
+  (let [kind-kw (->> kind
+                     name
+                     (keyword "kind"))]
+    (fn
+      ([]
+       kind-kw)
+      ([value]
+       (attach-kind-to-value value kind-kw)))))
+
+(defmacro defkinds [& kind-symbols]
+  (->> kind-symbols
+       (map (fn [s]
+              `(def ~s
+                 (kind-as-a-fn (quote ~s)))))
+       (cons 'do)))

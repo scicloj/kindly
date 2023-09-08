@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file. This change
 
 ## [4-alpha3] - 2023-09-08
 - revising list of kinds
-- refactorin the creation of kinds using a macro
+- refactoring the creation of kinds using a macro
 
 ## [4-alpha2] - 2023-09-01
 - adding kinds

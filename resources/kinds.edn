@@ -1,0 +1,36 @@
+[["simple behaviours"
+  [[pprint {:display-as "a formatted string"}]
+   [hidden {:display-as "do not display"}]]]
+
+ ["web dev"
+  [[hiccup {:display-as "HTML"}]
+   [reagent {:display-as "A reagent component inside HTML"}]]]
+
+ ["data visualization formats"
+  [[md {:display-as "a Markdown string"}]
+   [code {:display-as "???"}]
+   [vega {:display-as  "A Vega chart"
+          :docs        "https://vega.github.io/vega/docs/"
+          :json-schema "https://vega.github.io/schema/vega/v5.json"}]
+   [vega-lite {:display-as  "VegaLite chart"
+               :docs        "https://vega.github.io/vega-lite/docs/"
+               :json-schema "https://vega.github.io/schema/vega-lite/v5.json"}]
+   [echarts]
+   [cytoscape]]]
+
+ ["specific types"
+  [[image]
+   [dataset]]]
+
+ ["clojure specific"
+  [[var]
+   [test]]]
+
+ ["plain structures"
+  [[seq]
+   [vector]
+   [set]
+   [map]]]
+
+ ["other recursive structures"
+  [[table]]]]

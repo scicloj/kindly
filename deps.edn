@@ -1,6 +1,7 @@
-{:deps {org.clojure/clojure         {:mvn/version "1.10.3"}}
+{:paths ["src" "resources"]
+ :deps {org.clojure/clojure         {:mvn/version "1.10.3"}}
  :aliases {:dev {:extra-deps {org.scicloj/clay {:mvn/version "2-alpha31"}}
-                 :extra-paths ["notebooks"]}
+                 :extra-paths ["dev" "notebooks"]}
            :build {:deps {io.github.seancorfield/build-clj
                           {:git/tag "v0.6.4" :git/sha "c21cfde"}}
                    :ns-default build}

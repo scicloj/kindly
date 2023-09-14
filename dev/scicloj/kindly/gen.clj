@@ -32,7 +32,7 @@
 (defn kind-ns [all-kinds]
   (str "(ns scicloj.kindly.v4.kind
   \"Kinds for visualization\"
-  (:require [scicloj.kindly.v4.api :refer [attach-kind-to-value]))
+  (:require [scicloj.kindly.v4.api :refer [attach-kind-to-value]]))
 
 " (kind-fns all-kinds) \newline))
 

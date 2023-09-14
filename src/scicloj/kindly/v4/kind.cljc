@@ -1,6 +1,6 @@
 (ns scicloj.kindly.v4.kind
   "Kinds for visualization"
-  (:require [scicloj.kindly.v4.api :refer [attach-kind-to-value]))
+  (:require [scicloj.kindly.v4.api :refer [attach-kind-to-value]]))
 
 ;; ## simple behaviours
 

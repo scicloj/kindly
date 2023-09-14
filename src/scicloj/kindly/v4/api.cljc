@@ -16,7 +16,8 @@
 
 (def known-kinds
   "A set of common visualization requests"
-  #{;; simple behaviours
+  #{
+;; simple behaviours
     :kind/pprint
     :kind/hidden
 ;; web dev

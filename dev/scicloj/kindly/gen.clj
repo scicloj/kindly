@@ -20,7 +20,7 @@
                      (str (name k) ": " v)))
          "\"" \newline
          "  ([] " kind-kw ")" \newline
-         "  ([value] (attach-kind-to-value value " kind-kw "))" \newline)))
+         "  ([value] (attach-kind-to-value value " kind-kw ")))" \newline)))
 
 (defn kind-fns [all-kinds]
   (str/join (str \newline \newline)

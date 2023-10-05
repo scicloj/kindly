@@ -42,4 +42,5 @@
     :kind/set
     :kind/map
 ;; other recursive structures
-    :kind/table})
+    :kind/table
+    :kind/portal})

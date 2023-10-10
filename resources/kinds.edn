@@ -1,37 +1,132 @@
 [["simple behaviours"
-  [[pprint {:display-as "a formatted string"}]
-   [hidden {:display-as "do not display"}]]]
+  [[pprint {:display-as "a formatted string"
+            :example    {:key1 "value1", :key2, "value2"}}]
+   [hidden {:display-as "do not display"
+            :example    ["SECRET"]}]]]
 
  ["web dev"
-  [[hiccup {:display-as "HTML"}]
-   [reagent {:display-as "A reagent component inside HTML"}]]]
+  [[hiccup {:display-as "HTML"
+            :example    [:div [:h3 "Hello " [:em "World"]]]}]
+   [reagent {:display-as "A reagent component inside HTML"
+             :example    [(fn [] [:button {:on-click (fn [ev] (js/alert "You pressed it"))}
+                                  "Press me"])]}]]]
 
  ["data visualization formats"
-  [[md {:display-as "a Markdown string"}]
-   [code {:display-as "???"}]
-   [vega {:display-as  "A Vega chart"
+  [[md {:display-as "a Markdown string"
+        :example    "## Hello *World*"}]
+   [code {:display-as "the code only, not the result"
+          :example    (+ 1 2)}]
+   [vega {:display-as  "a chart"
+          :example     {:description "A basic bar chart example, with value labels shown upon pointer hover.",
+                        :axes        [{:orient "bottom", :scale "xscale"}
+                                      {:orient "left", :scale "yscale"}],
+                        :width       400,
+                        :scales      [{:name    "xscale",
+                                       :type    "band",
+                                       :domain  {:data "table", :field "category"},
+                                       :range   "width",
+                                       :padding 0.05,
+                                       :round   true}
+                                      {:name   "yscale",
+                                       :domain {:data "table", :field "amount"},
+                                       :nice   true,
+                                       :range  "height"}],
+                        :padding     5,
+                        :marks       [{:type "rect",
+                                       :from {:data "table"},
+                                       :encode
+                                       {:enter
+                                        {:x     {:scale "xscale", :field "category"},
+                                         :width {:scale "xscale", :band 1},
+                                         :y     {:scale "yscale", :field "amount"},
+                                         :y2    {:scale "yscale", :value 0}},
+                                        :update {:fill {:value "steelblue"}},
+                                        :hover  {:fill {:value "red"}}}}
+                                      {:type "text",
+                                       :encode
+                                       {:enter
+                                        {:align    {:value "center"},
+                                         :baseline {:value "bottom"},
+                                         :fill     {:value "#333"}},
+                                        :update
+                                        {:x    {:scale "xscale", :signal "tooltip.category", :band 0.5},
+                                         :y    {:scale "yscale", :signal "tooltip.amount", :offset -2},
+                                         :text {:signal "tooltip.amount"},
+                                         :fillOpacity
+                                         [{:test "datum === tooltip", :value 0} {:value 1}]}}}],
+                        :signals     [{:name  "tooltip",
+                                       :value {},
+                                       :on
+                                       [{:events "rect:pointerover", :update "datum"}
+                                        {:events "rect:pointerout", :update "{}"}]}],
+                        :height      200,
+                        :data        [{:name "table",
+                                       :values
+                                       [{:category "A", :amount 28}
+                                        {:category "B", :amount 55}
+                                        {:category "C", :amount 43}
+                                        {:category "D", :amount 91}
+                                        {:category "E", :amount 81}
+                                        {:category "F", :amount 53}
+                                        {:category "G", :amount 19}
+                                        {:category "H", :amount 87}]}]}
           :docs        "https://vega.github.io/vega/docs/"
           :json-schema "https://vega.github.io/schema/vega/v5.json"}]
    [vega-lite {:display-as  "VegaLite chart"
+               :example     {:description "A simple bar chart with embedded data."
+                             :data        {:values [{"a" "A", "b" 28},
+                                                    {"a" "B", "b" 55},
+                                                    {"a" "C", "b" 43},
+                                                    {"a" "D", "b" 91},
+                                                    {"a" "E", "b" 81},
+                                                    {"a" "F", "b" 53},
+                                                    {"a" "G", "b" 19},
+                                                    {"a" "H", "b" 87},
+                                                    {"a" "I", "b" 52}]},
+                             :mark        "bar",
+                             :encoding    {"x" {"field" "a", "type" "nominal", "axis" {"labelAngle" 0}},
+                                           "y" {"field" "b", "type" "quantitative"}}}
                :docs        "https://vega.github.io/vega-lite/docs/"
                :json-schema "https://vega.github.io/schema/vega-lite/v5.json"}]
-   [echarts]
-   [cytoscape]]]
+   [echarts {:display-as "a chart"
+             :example    [["a" "b" "c" "d"]
+                          [1 2 3 4]]
+             :docs       "https://echarts.apache.org/en/option.html"}]
+   [cytoscape {:display-as  "a graph"
+               :example     {:nodes #{1 2 3 4 5}
+                             :edges #{[1 2] [3 5] [4 2] [4 3]}}
+               :docs        "https://js.cytoscape.org/#notation/elements-json"
+               :json-schema "https://raw.githubusercontent.com/AZaitzeff/cytoscape_js_schema/main/cytoscape_schema.json"}]]]
 
  ["specific types"
-  [[image]
-   [dataset]]]
+  [[image {:display-as "an image"
+           :example    "https://raw.githubusercontent.com/scicloj/graphic-design/live/icons/Kindly.svg"}]
+   [dataset {:display-as "a table"
+             :example    (->> (System/getProperties)
+                           (map (fn [[k v]] {:k k :v (apply str (take 40 (str v)))}))
+                           (tech.v3.dataset/->>dataset {:dataset-name "My Truncated System Properties"}))
+             :docs       "https://github.com/techascent/tech.ml.dataset"}]]]
 
  ["clojure specific"
-  [[var]
-   [test]]]
+  [[var {:display-as "the name of a var"
+         :example    (def testvar 100)}]
+   [test {:display-as "success or failure"
+          :example    (deftest unity-test (is (= 1 1)))}]]]
 
  ["plain structures"
-  [[seq]
-   [vector]
-   [set]
-   [map]]]
+  [[seq {:display-as "a sequence"
+         :example    (range 5)}]
+   [vector {:display-as "a sequence"
+            :example    (vec (range 5))}]
+   [set {:display-as "a bag"
+         :example    (set (range 5))}]
+   [map {:display-as "associated values"
+         :example    {:key1 "value1", :key2 "value2"}}]]]
 
  ["other recursive structures"
-  [[table]
-   [portal]]]]
+  [[table {:display-as "a table"
+           :example    {:headers [:a]
+                        :rows    [{:a 1} {:a 2}]}}]
+   [portal {:display-as "portal"
+            :example    {:key1 "value1",
+                         :key2 ^{:kindly/kind :kind/hiccup} [:div [:h3 "Hello " [:em "World"]]]}}]]]]

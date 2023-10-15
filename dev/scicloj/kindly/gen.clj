@@ -11,13 +11,16 @@
       (slurp)
       (edn/read-string)))
 
+(defn escape [s]
+  (str/replace s "\"" "\\\""))
+
 (defn kind-fn [[kind attrs]]
   (let [kind-kw (keyword "kind" (name kind))]
     (str "(defn " kind \newline
          "  \""
          (str/join \newline
                    (for [[k v] attrs]
-                     (str (name k) ": " v)))
+                     (str (name k) ": " (escape v))))
          "\"" \newline
          "  ([] " kind-kw ")" \newline
          "  ([value] (attach-kind-to-value value " kind-kw ")))" \newline)))

@@ -32,10 +32,18 @@
                    (str/join \newline
                              (map kind-fn kinds))))))
 
+(defn excludes [all-kinds]
+  (let [cc (find-ns 'clojure.core)]
+    (vec (for [[category kinds] all-kinds
+               [kind] kinds
+               :when (ns-resolve cc kind)]
+           kind))))
+
 (defn kind-ns [all-kinds]
   (str "(ns scicloj.kindly.v4.kind
   \"Kinds for visualization\"
-  (:require [scicloj.kindly.v4.api :refer [attach-kind-to-value]]))
+  (:require [scicloj.kindly.v4.api :refer [attach-kind-to-value]])
+  (:refer-clojure :exclude " (excludes all-kinds) "))
 
 " (kind-fns all-kinds) \newline))
 

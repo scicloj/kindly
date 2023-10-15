@@ -78,6 +78,14 @@ json-schema: https://raw.githubusercontent.com/AZaitzeff/cytoscape_js_schema/mai
   ([] :kind/cytoscape)
   ([value] (attach-kind-to-value value :kind/cytoscape)))
 
+(defn plotly
+  "display-as: a plot
+example: [{:x [1 2 3 4 5], :y [1 2 4 8 16]}]
+docs: https://plotly.com/javascript/getting-started/
+json-schema: https://plotly.com/chart-studio-help/json-chart-schema/"
+  ([] :kind/plotly)
+  ([value] (attach-kind-to-value value :kind/plotly)))
+
 
 ;; ## specific types
 

@@ -30,6 +30,7 @@
     :kind/vega-lite
     :kind/echarts
     :kind/cytoscape
+    :kind/plotly
 ;; specific types
     :kind/image
     :kind/dataset

@@ -96,15 +96,20 @@
                :example     {:nodes #{1 2 3 4 5}
                              :edges #{[1 2] [3 5] [4 2] [4 3]}}
                :docs        "https://js.cytoscape.org/#notation/elements-json"
-               :json-schema "https://raw.githubusercontent.com/AZaitzeff/cytoscape_js_schema/main/cytoscape_schema.json"}]]]
+               :json-schema "https://raw.githubusercontent.com/AZaitzeff/cytoscape_js_schema/main/cytoscape_schema.json"}]
+   [plotly {:display-as "a plot"
+            :example [{:x [1, 2, 3, 4, 5],
+                       :y [1, 2, 4, 8, 16]}]
+            :docs "https://plotly.com/javascript/getting-started/"
+            :json-schema "https://plotly.com/chart-studio-help/json-chart-schema/"}]]]
 
  ["specific types"
   [[image {:display-as "an image"
            :example    "https://raw.githubusercontent.com/scicloj/graphic-design/live/icons/Kindly.svg"}]
    [dataset {:display-as "a table"
              :example    (->> (System/getProperties)
-                           (map (fn [[k v]] {:k k :v (apply str (take 40 (str v)))}))
-                           (tech.v3.dataset/->>dataset {:dataset-name "My Truncated System Properties"}))
+                              (map (fn [[k v]] {:k k :v (apply str (take 40 (str v)))}))
+                              (tech.v3.dataset/->>dataset {:dataset-name "My Truncated System Properties"}))
              :docs       "https://github.com/techascent/tech.ml.dataset"}]]]
 
  ["clojure specific"

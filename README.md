@@ -1,5 +1,7 @@
 # Kindly
 
+<img src="Kindly.svg" alt="Kindly" align="right"/>
+
 [![Clojars Project](https://img.shields.io/clojars/v/org.scicloj/kindly.svg)](https://clojars.org/org.scicloj/kindly)
 
 Kindly is a small library for defining in what kinds of way Clojure forms and values should be displayed.
@@ -7,6 +9,7 @@ Kindly is a small library for defining in what kinds of way Clojure forms and va
 [Documentation](https://scicloj.github.io/kindly/) - coming soon
 
 ## Status
+
 v3 (alpha stage) is currently in use in some projects.
 It will soon be replaced by v4.
 

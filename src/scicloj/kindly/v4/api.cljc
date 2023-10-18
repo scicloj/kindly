@@ -14,6 +14,7 @@
   (cond (keyword? kind) (attach-kind-to-value value kind)
         (fn? kind) (consider value (kind))))
 
+;; TODO: generate
 (def known-kinds
   "A set of common visualization requests"
   #{

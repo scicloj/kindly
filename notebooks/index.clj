@@ -117,6 +117,16 @@ kindly/known-kinds
 ;; * [kind-clerk](https://github.com/scicloj/kind-clerk/) for rendering notebooks
 ;; * [kind-portal](https://github.com/scicloj/kind-portal/) for viewing individual visualizations at the REPL
 
-;; Tool makers seeking to integrate with Kindly, please see
+;; Kind inference
 
 ;; * [kindly-advice]https://github.com/scicloj/kindly-advice/
+;;   Kindly advice identifies kinds in a standard way, and provides the mechanisms for kind inference where desired.
+;;   This library simplifies the task of toolmakers in supporting kinds.
+
+;; ## Example projects using Kindly
+
+;; * [Clay documentation](https://scicloj.github.io/clay/) is written using Kindly annotations,
+;;   and contains examples of what Kindly visualizations look like.
+;; * The [Clojure Data Cookbook](https://github.com/scicloj/clojure-data-cookbook)
+;;   is an example of a book that can be visualized and published with several different tools.
+;; * Kindly itself is documented with Kindly annotations, see [notebooks/index.clj](notebooks/index.clj).

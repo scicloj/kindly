@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [4-alpha7] - 2023-10-21
+- added kind/html (for raw HTML)
+
 ## [4-alpha6] - 2023-10-15
 - added: kind/plotly
 

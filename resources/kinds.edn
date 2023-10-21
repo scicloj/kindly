@@ -5,7 +5,9 @@
             :example    ["SECRET"]}]]]
 
  ["web dev"
-  [[hiccup {:display-as "HTML"
+  [[html {:display-as "HTML"
+          :example "<div><h3>Hello ><em>World</em></h3><div>"}]
+   [hiccup {:display-as "HTML"
             :example    [:div [:h3 "Hello " [:em "World"]]]}]
    [reagent {:display-as "A reagent component inside HTML"
              :example    [(fn [] [:button {:on-click (fn [ev] (js/alert "You pressed it"))}

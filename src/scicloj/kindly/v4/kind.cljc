@@ -20,6 +20,12 @@ example: [\"SECRET\"]"
 
 ;; ## web dev
 
+(defn html
+  "display-as: HTML
+example: <div><h3>Hello ><em>World</em></h3><div>"
+  ([] :kind/html)
+  ([value] (attach-kind-to-value value :kind/html)))
+
 (defn hiccup
   "display-as: HTML
 example: [:div [:h3 \"Hello \" [:em \"World\"]]]"

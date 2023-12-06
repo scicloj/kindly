@@ -10,8 +10,7 @@ Kindly is a small library for defining in what kinds of way Clojure forms and va
 
 ## Status
 
-v3 (alpha stage) is currently in use in some projects.
-It will soon be replaced by v4.
+v4 is the currently active version. It is considered in alpha stage but is expected to stabilize soon.
 
 ## License
 

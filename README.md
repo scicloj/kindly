@@ -6,11 +6,12 @@
 
 Kindly is a small library for defining in what kinds of way Clojure forms and values should be displayed.
 
-[Documentation](https://scicloj.github.io/kindly-noted/kindly/) (WIP)
+[Documentation](https://scicloj.github.io/kindly-noted/kindly) (WIP)
+
 
 ## Status
 
-v4 is the currently active version. It is considered in alpha stage but is expected to stabilize soon.
+v4 is the currently active version. It is considered in alpha stage but is expected to stabiliz .
 
 ## License
 

@@ -8,6 +8,7 @@ Kindly is a small library for defining in what kinds of way Clojure forms and va
 
 [Documentation](https://scicloj.github.io/kindly-noted/kindly) (WIP)
 
+[discussion at visual-tools meeting #20](https://www.youtube.com/watch?v=DAQnvAgBma8&t=3802s)
 
 ## Status
 

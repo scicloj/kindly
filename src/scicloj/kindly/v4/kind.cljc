@@ -13,16 +13,15 @@ example: {:key1 \"value1\", :key2 \"value2\"}"
 
 (defn hidden
   "display-as: do not display
-example: [\"SECRET\"]"
+  example: [\"SECRET\"]"
   ([] :kind/hidden)
   ([value] (attach-kind-to-value value :kind/hidden)))
-
 
 ;; ## web dev
 
 (defn html
   "display-as: HTML
-example: <div><h3>Hello ><em>World</em></h3><div>"
+  example: <div><h3>Hello ><em>World</em></h3><div>"
   ([] :kind/html)
   ([value] (attach-kind-to-value value :kind/html)))
 
@@ -43,15 +42,21 @@ example: [(fn [] [:button {:on-click (fn [ev] (js/alert \"You pressed it\"))} \"
 
 (defn md
   "display-as: a Markdown string
-example: ## Hello *World*"
+  example: ## Hello *World*"
   ([] :kind/md)
-  ([value] (attach-kind-to-value value :kind/md)))
+  ([value] (-> value
+               (attach-kind-to-value :kind/md)
+               (vary-meta
+                assoc :kindly/hide-code? true))))
 
 (defn code
   "display-as: the code only, not the result
-example: (+ 1 2)"
+  example: (+ 1 2)"
   ([] :kind/code)
-  ([value] (attach-kind-to-value value :kind/code)))
+  ([value] (-> value
+               (attach-kind-to-value :kind/code)
+               (vary-meta
+                assoc :kindly/hide-code? true))))
 
 (defn vega
   "display-as: a chart
@@ -164,4 +169,3 @@ example: {:headers [:a], :rows [{:a 1} {:a 2}]}"
 example: {:key1 \"value1\", :key2 [:div [:h3 \"Hello \" [:em \"World\"]]]}"
   ([] :kind/portal)
   ([value] (attach-kind-to-value value :kind/portal)))
-

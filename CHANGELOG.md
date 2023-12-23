@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
-## [4-alpha9-SNAPHSOT]
+## [4-alpha9] - 2023-12-24
 - added `hide-code` to the API
 - updated code generation to make code hiding configurable by `kinds.edn`
 - support for an additional `options` argument to the kind functions (which is then wrapped in a vector with the value)

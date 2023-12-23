@@ -23,7 +23,12 @@
                      (str (name k) ": " (escape v))))
          "\"" \newline
          "  ([] " kind-kw ")" \newline
-         "  ([value] (attach-kind-to-value value " kind-kw ")))" \newline)))
+         (if (:hide-code attrs)
+           (str
+            "  ([value] (hide-code (attach-kind-to-value value " kind-kw "))) ")
+           (str
+            "  ([value] (attach-kind-to-value value " kind-kw ")) "))
+         ")" \newline)))
 
 (defn kind-fns [all-kinds]
   (str/join (str \newline \newline)
@@ -42,7 +47,7 @@
 (defn kind-ns [all-kinds]
   (str "(ns scicloj.kindly.v4.kind
   \"Kinds for visualization\"
-  (:require [scicloj.kindly.v4.api :refer [attach-kind-to-value]])
+  (:require [scicloj.kindly.v4.api :refer [attach-kind-to-value hide-code]])
   (:refer-clojure :exclude " (excludes all-kinds) "))
 
 " (kind-fns all-kinds) \newline))
@@ -71,6 +76,15 @@
   (if (instance? clojure.lang.IObj value)
     (vary-meta value assoc :kindly/kind kind)
     (attach-kind-to-value [value] kind)))
+
+(defn hide-code
+  \"Annotate whether the code of this value should be hidden\"
+  ([value]
+    (hide-code value true))
+  ([value bool]
+    (if (instance? clojure.lang.IObj value)
+      (vary-meta value assoc :kindly/hide-code true)
+      (hide-code [value]))))
 
 (defn consider
   \"Prefer using the functions in the kind namespace instead\"

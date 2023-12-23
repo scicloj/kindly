@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [4-alpha9-SNAPHSOT]
+- added `hide-code` to the API
+- updated code generation to make code hiding configurable by `kinds.edn`
+
 ## [4-alpha8] - 2023-12-12
 - hiding code for some kinds
 

@@ -8,6 +8,15 @@
     (vary-meta value assoc :kindly/kind kind)
     (attach-kind-to-value [value] kind)))
 
+(defn hide-code
+  "Annotate whether the code of this value should be hidden"
+  ([value]
+    (hide-code value true))
+  ([value bool]
+    (if (instance? clojure.lang.IObj value)
+      (vary-meta value assoc :kindly/hide-code true)
+      (hide-code [value]))))
+
 (defn consider
   "Prefer using the functions in the kind namespace instead"
   [value kind]

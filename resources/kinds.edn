@@ -14,64 +14,66 @@
                                   "Press me"])]}]]]
 
  ["data visualization formats"
-  [[md {:display-as "a Markdown string"
-        :example    "## Hello *World*"}]
-   [code {:display-as "the code only, not the result"
-          :example    (+ 1 2)}]
-   [vega {:display-as  "a chart"
-          :example     {:description "A basic bar chart example, with value labels shown upon pointer hover.",
-                        :axes        [{:orient "bottom", :scale "xscale"}
-                                      {:orient "left", :scale "yscale"}],
-                        :width       400,
-                        :scales      [{:name    "xscale",
-                                       :type    "band",
-                                       :domain  {:data "table", :field "category"},
-                                       :range   "width",
-                                       :padding 0.05,
-                                       :round   true}
-                                      {:name   "yscale",
-                                       :domain {:data "table", :field "amount"},
-                                       :nice   true,
-                                       :range  "height"}],
-                        :padding     5,
-                        :marks       [{:type "rect",
-                                       :from {:data "table"},
-                                       :encode
-                                       {:enter
-                                        {:x     {:scale "xscale", :field "category"},
-                                         :width {:scale "xscale", :band 1},
-                                         :y     {:scale "yscale", :field "amount"},
-                                         :y2    {:scale "yscale", :value 0}},
-                                        :update {:fill {:value "steelblue"}},
-                                        :hover  {:fill {:value "red"}}}}
-                                      {:type "text",
-                                       :encode
-                                       {:enter
-                                        {:align    {:value "center"},
-                                         :baseline {:value "bottom"},
-                                         :fill     {:value "#333"}},
-                                        :update
-                                        {:x    {:scale "xscale", :signal "tooltip.category", :band 0.5},
-                                         :y    {:scale "yscale", :signal "tooltip.amount", :offset -2},
-                                         :text {:signal "tooltip.amount"},
-                                         :fillOpacity
-                                         [{:test "datum === tooltip", :value 0} {:value 1}]}}}],
-                        :signals     [{:name  "tooltip",
-                                       :value {},
-                                       :on
-                                       [{:events "rect:pointerover", :update "datum"}
-                                        {:events "rect:pointerout", :update "{}"}]}],
-                        :height      200,
-                        :data        [{:name "table",
-                                       :values
-                                       [{:category "A", :amount 28}
-                                        {:category "B", :amount 55}
-                                        {:category "C", :amount 43}
-                                        {:category "D", :amount 91}
-                                        {:category "E", :amount 81}
-                                        {:category "F", :amount 53}
-                                        {:category "G", :amount 19}
-                                        {:category "H", :amount 87}]}]}
+  [[md {:display-as            "a Markdown string"
+        :example               "## Hello *World*"
+        :hide-code             true}]
+   [code {:display-as          "the code only, not the result"
+          :example             (+ 1 2)
+          :hide-code           true}]
+   [vega {:display-as          "a chart"
+          :example             {:description "A basic bar chart example, with value labels shown upon pointer hover.",
+                                :axes        [{:orient "bottom", :scale "xscale"}
+                                              {:orient "left", :scale "yscale"}],
+                                :width       400,
+                                :scales      [{:name    "xscale",
+                                               :type    "band",
+                                               :domain  {:data "table", :field "category"},
+                                               :range   "width",
+                                               :padding 0.05,
+                                               :round   true}
+                                              {:name   "yscale",
+                                               :domain {:data "table", :field "amount"},
+                                               :nice   true,
+                                               :range  "height"}],
+                                :padding     5,
+                                :marks       [{:type "rect",
+                                               :from {:data "table"},
+                                               :encode
+                                               {:enter
+                                                {:x     {:scale "xscale", :field "category"},
+                                                 :width {:scale "xscale", :band 1},
+                                                 :y     {:scale "yscale", :field "amount"},
+                                                 :y2    {:scale "yscale", :value 0}},
+                                                :update {:fill {:value "steelblue"}},
+                                                :hover  {:fill {:value "red"}}}}
+                                              {:type "text",
+                                               :encode
+                                               {:enter
+                                                {:align    {:value "center"},
+                                                 :baseline {:value "bottom"},
+                                                 :fill     {:value "#333"}},
+                                                :update
+                                                {:x    {:scale "xscale", :signal "tooltip.category", :band 0.5},
+                                                 :y    {:scale "yscale", :signal "tooltip.amount", :offset -2},
+                                                 :text {:signal "tooltip.amount"},
+                                                 :fillOpacity
+                                                 [{:test "datum === tooltip", :value 0} {:value 1}]}}}],
+                                :signals     [{:name  "tooltip",
+                                               :value {},
+                                               :on
+                                               [{:events "rect:pointerover", :update "datum"}
+                                                {:events "rect:pointerout", :update "{}"}]}],
+                                :height      200,
+                                :data        [{:name "table",
+                                               :values
+                                               [{:category "A", :amount 28}
+                                                {:category "B", :amount 55}
+                                                {:category "C", :amount 43}
+                                                {:category "D", :amount 91}
+                                                {:category "E", :amount 81}
+                                                {:category "F", :amount 53}
+                                                {:category "G", :amount 19}
+                                                {:category "H", :amount 87}]}]}
           :docs        "https://vega.github.io/vega/docs/"
           :json-schema "https://vega.github.io/schema/vega/v5.json"}]
    [vega-lite {:display-as  "VegaLite chart"

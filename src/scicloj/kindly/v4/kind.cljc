@@ -78,7 +78,7 @@ docs: https://echarts.apache.org/en/option.html
 support-options: true"
   ([] :kind/echarts)
   ([value] (attach-kind-to-value value :kind/echarts)) 
-  ([value options] (echarts [options value])))
+  ([value options] (echarts [value options])))
 
 (defn cytoscape
   "display-as: a graph
@@ -88,7 +88,7 @@ json-schema: https://raw.githubusercontent.com/AZaitzeff/cytoscape_js_schema/mai
 support-options: true"
   ([] :kind/cytoscape)
   ([value] (attach-kind-to-value value :kind/cytoscape)) 
-  ([value options] (cytoscape [options value])))
+  ([value options] (cytoscape [value options])))
 
 (defn plotly
   "display-as: a plot
@@ -165,7 +165,7 @@ example: {:headers [:a], :rows [{:a 1} {:a 2}]}
 support-options: true"
   ([] :kind/table)
   ([value] (attach-kind-to-value value :kind/table)) 
-  ([value options] (table [options value])))
+  ([value options] (table [value options])))
 
 (defn portal
   "display-as: portal

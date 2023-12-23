@@ -27,8 +27,10 @@
            (str
             "  ([value] (hide-code (attach-kind-to-value value " kind-kw "))) ")
            (str
-            "  ([value] (attach-kind-to-value value " kind-kw ")) ")) \newline
-         "  ([value options] (" kind " [options value]))"
+            "  ([value] (attach-kind-to-value value " kind-kw ")) "))
+         (when (:support-options attrs)
+           (str  \newline
+                 "  ([value options] (" kind " [options value]))"))
          ")" \newline)))
 
 (defn kind-fns [all-kinds]

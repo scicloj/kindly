@@ -9,15 +9,13 @@
   "display-as: a formatted string
 example: {:key1 \"value1\", :key2 \"value2\"}"
   ([] :kind/pprint)
-  ([value] (attach-kind-to-value value :kind/pprint)) 
-  ([value options] (pprint [options value])))
+  ([value] (attach-kind-to-value value :kind/pprint)) )
 
 (defn hidden
   "display-as: do not display
 example: [\"SECRET\"]"
   ([] :kind/hidden)
-  ([value] (attach-kind-to-value value :kind/hidden)) 
-  ([value options] (hidden [options value])))
+  ([value] (attach-kind-to-value value :kind/hidden)) )
 
 
 ;; ## web dev
@@ -26,22 +24,19 @@ example: [\"SECRET\"]"
   "display-as: HTML
 example: <div><h3>Hello ><em>World</em></h3><div>"
   ([] :kind/html)
-  ([value] (attach-kind-to-value value :kind/html)) 
-  ([value options] (html [options value])))
+  ([value] (attach-kind-to-value value :kind/html)) )
 
 (defn hiccup
   "display-as: HTML
 example: [:div [:h3 \"Hello \" [:em \"World\"]]]"
   ([] :kind/hiccup)
-  ([value] (attach-kind-to-value value :kind/hiccup)) 
-  ([value options] (hiccup [options value])))
+  ([value] (attach-kind-to-value value :kind/hiccup)) )
 
 (defn reagent
   "display-as: A reagent component inside HTML
 example: [(fn [] [:button {:on-click (fn [ev] (js/alert \"You pressed it\"))} \"Press me\"])]"
   ([] :kind/reagent)
-  ([value] (attach-kind-to-value value :kind/reagent)) 
-  ([value options] (reagent [options value])))
+  ([value] (attach-kind-to-value value :kind/reagent)) )
 
 
 ;; ## data visualization formats
@@ -51,16 +46,14 @@ example: [(fn [] [:button {:on-click (fn [ev] (js/alert \"You pressed it\"))} \"
 example: ## Hello *World*
 hide-code: true"
   ([] :kind/md)
-  ([value] (hide-code (attach-kind-to-value value :kind/md))) 
-  ([value options] (md [options value])))
+  ([value] (hide-code (attach-kind-to-value value :kind/md))) )
 
 (defn code
   "display-as: the code only, not the result
 example: (+ 1 2)
 hide-code: true"
   ([] :kind/code)
-  ([value] (hide-code (attach-kind-to-value value :kind/code))) 
-  ([value options] (code [options value])))
+  ([value] (hide-code (attach-kind-to-value value :kind/code))) )
 
 (defn vega
   "display-as: a chart
@@ -68,8 +61,7 @@ example: {:description \"A basic bar chart example, with value labels shown upon
 docs: https://vega.github.io/vega/docs/
 json-schema: https://vega.github.io/schema/vega/v5.json"
   ([] :kind/vega)
-  ([value] (attach-kind-to-value value :kind/vega)) 
-  ([value options] (vega [options value])))
+  ([value] (attach-kind-to-value value :kind/vega)) )
 
 (defn vega-lite
   "display-as: VegaLite chart
@@ -77,13 +69,13 @@ example: {:description \"A simple bar chart with embedded data.\", :data {:value
 docs: https://vega.github.io/vega-lite/docs/
 json-schema: https://vega.github.io/schema/vega-lite/v5.json"
   ([] :kind/vega-lite)
-  ([value] (attach-kind-to-value value :kind/vega-lite)) 
-  ([value options] (vega-lite [options value])))
+  ([value] (attach-kind-to-value value :kind/vega-lite)) )
 
 (defn echarts
   "display-as: a chart
 example: [[\"a\" \"b\" \"c\" \"d\"] [1 2 3 4]]
-docs: https://echarts.apache.org/en/option.html"
+docs: https://echarts.apache.org/en/option.html
+support-options: true"
   ([] :kind/echarts)
   ([value] (attach-kind-to-value value :kind/echarts)) 
   ([value options] (echarts [options value])))
@@ -92,7 +84,8 @@ docs: https://echarts.apache.org/en/option.html"
   "display-as: a graph
 example: {:nodes #{1 4 3 2 5}, :edges #{[4 3] [4 2] [1 2] [3 5]}}
 docs: https://js.cytoscape.org/#notation/elements-json
-json-schema: https://raw.githubusercontent.com/AZaitzeff/cytoscape_js_schema/main/cytoscape_schema.json"
+json-schema: https://raw.githubusercontent.com/AZaitzeff/cytoscape_js_schema/main/cytoscape_schema.json
+support-options: true"
   ([] :kind/cytoscape)
   ([value] (attach-kind-to-value value :kind/cytoscape)) 
   ([value options] (cytoscape [options value])))
@@ -103,8 +96,7 @@ example: [{:x [1 2 3 4 5], :y [1 2 4 8 16]}]
 docs: https://plotly.com/javascript/getting-started/
 json-schema: https://plotly.com/chart-studio-help/json-chart-schema/"
   ([] :kind/plotly)
-  ([value] (attach-kind-to-value value :kind/plotly)) 
-  ([value options] (plotly [options value])))
+  ([value] (attach-kind-to-value value :kind/plotly)) )
 
 
 ;; ## specific types
@@ -113,16 +105,14 @@ json-schema: https://plotly.com/chart-studio-help/json-chart-schema/"
   "display-as: an image
 example: https://raw.githubusercontent.com/scicloj/graphic-design/live/icons/Kindly.svg"
   ([] :kind/image)
-  ([value] (attach-kind-to-value value :kind/image)) 
-  ([value options] (image [options value])))
+  ([value] (attach-kind-to-value value :kind/image)) )
 
 (defn dataset
   "display-as: a table
 example: (->> (System/getProperties) (map (fn [[k v]] {:k k, :v (apply str (take 40 (str v)))})) (tech.v3.dataset/->>dataset {:dataset-name \"My Truncated System Properties\"}))
 docs: https://github.com/techascent/tech.ml.dataset"
   ([] :kind/dataset)
-  ([value] (attach-kind-to-value value :kind/dataset)) 
-  ([value options] (dataset [options value])))
+  ([value] (attach-kind-to-value value :kind/dataset)) )
 
 
 ;; ## clojure specific
@@ -131,15 +121,13 @@ docs: https://github.com/techascent/tech.ml.dataset"
   "display-as: the name of a var
 example: (def testvar 100)"
   ([] :kind/var)
-  ([value] (attach-kind-to-value value :kind/var)) 
-  ([value options] (var [options value])))
+  ([value] (attach-kind-to-value value :kind/var)) )
 
 (defn test
   "display-as: success or failure
 example: (deftest unity-test (is (= 1 1)))"
   ([] :kind/test)
-  ([value] (attach-kind-to-value value :kind/test)) 
-  ([value options] (test [options value])))
+  ([value] (attach-kind-to-value value :kind/test)) )
 
 
 ;; ## plain structures
@@ -148,36 +136,33 @@ example: (deftest unity-test (is (= 1 1)))"
   "display-as: a sequence
 example: (range 5)"
   ([] :kind/seq)
-  ([value] (attach-kind-to-value value :kind/seq)) 
-  ([value options] (seq [options value])))
+  ([value] (attach-kind-to-value value :kind/seq)) )
 
 (defn vector
   "display-as: a sequence
 example: (vec (range 5))"
   ([] :kind/vector)
-  ([value] (attach-kind-to-value value :kind/vector)) 
-  ([value options] (vector [options value])))
+  ([value] (attach-kind-to-value value :kind/vector)) )
 
 (defn set
   "display-as: a bag
 example: (set (range 5))"
   ([] :kind/set)
-  ([value] (attach-kind-to-value value :kind/set)) 
-  ([value options] (set [options value])))
+  ([value] (attach-kind-to-value value :kind/set)) )
 
 (defn map
   "display-as: associated values
 example: {:key1 \"value1\", :key2 \"value2\"}"
   ([] :kind/map)
-  ([value] (attach-kind-to-value value :kind/map)) 
-  ([value options] (map [options value])))
+  ([value] (attach-kind-to-value value :kind/map)) )
 
 
 ;; ## other recursive structures
 
 (defn table
   "display-as: a table
-example: {:headers [:a], :rows [{:a 1} {:a 2}]}"
+example: {:headers [:a], :rows [{:a 1} {:a 2}]}
+support-options: true"
   ([] :kind/table)
   ([value] (attach-kind-to-value value :kind/table)) 
   ([value options] (table [options value])))
@@ -186,6 +171,5 @@ example: {:headers [:a], :rows [{:a 1} {:a 2}]}"
   "display-as: portal
 example: {:key1 \"value1\", :key2 [:div [:h3 \"Hello \" [:em \"World\"]]]}"
   ([] :kind/portal)
-  ([value] (attach-kind-to-value value :kind/portal)) 
-  ([value options] (portal [options value])))
+  ([value] (attach-kind-to-value value :kind/portal)) )
 

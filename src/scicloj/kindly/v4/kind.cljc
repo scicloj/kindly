@@ -94,9 +94,11 @@ support-options: true"
   "display-as: a plot
 example: [{:x [1 2 3 4 5], :y [1 2 4 8 16]}]
 docs: https://plotly.com/javascript/getting-started/
-json-schema: https://plotly.com/chart-studio-help/json-chart-schema/"
+json-schema: https://plotly.com/chart-studio-help/json-chart-schema/
+support-options: true"
   ([] :kind/plotly)
-  ([value] (attach-kind-to-value value :kind/plotly)) )
+  ([value] (attach-kind-to-value value :kind/plotly)) 
+  ([value options] (plotly [value options])))
 
 
 ;; ## specific types

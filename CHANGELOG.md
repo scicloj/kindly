@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file. This change
 ## [4-alpha9-SNAPHSOT]
 - added `hide-code` to the API
 - updated code generation to make code hiding configurable by `kinds.edn`
+- support for an additional `options` argument to the kind functions (which is then wrapped in a vector with the value)
 
 ## [4-alpha8] - 2023-12-12
 - hiding code for some kinds

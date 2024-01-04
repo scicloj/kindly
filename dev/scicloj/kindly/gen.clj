@@ -77,7 +77,7 @@
   [value m]
   (if (instance? clojure.lang.IObj value)
     (vary-meta value merge m)
-    (attach-kind-to-value [value] kind)))
+    (attach-meta-to-value [value] kind)))
 
 (defn- attach-kind-to-value
   [value kind]

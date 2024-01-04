@@ -2,8 +2,8 @@
  :deps {org.clojure/clojure         {:mvn/version "1.10.3"}}
  :aliases {:dev {:extra-deps {org.scicloj/clay {:mvn/version "2-alpha38"}}
                  :extra-paths ["dev" "notebooks"]}
-           :build {:deps {io.github.seancorfield/build-clj
-                          {:git/tag "v0.6.4" :git/sha "c21cfde"}}
+           :build {:deps {io.github.clojure/tools.build {:mvn/version "0.9.6"}
+                          slipset/deps-deploy {:mvn/version "0.2.1"}}
                    :ns-default build}
            :test {:extra-paths ["test"]
                   :extra-deps {org.clojure/test.check {:mvn/version "1.1.1"}

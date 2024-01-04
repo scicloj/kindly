@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [4-alpha10] - 2024-01-04
+- extended `consider` to support attaching map metadata
+- turned `attach-kind-to-value` to a private fn
+
 ## [4-alpha9] - 2023-12-24
 - added `hide-code` to the API
 - updated code generation to make code hiding configurable by `kinds.edn`

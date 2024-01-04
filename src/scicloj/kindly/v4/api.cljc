@@ -1,12 +1,15 @@
 (ns scicloj.kindly.v4.api
   "See the kind namespace")
 
-(defn attach-kind-to-value
-  "Prefer using the functions in the kind namespace instead"
-  [value kind]
+(defn- attach-meta-to-value
+  [value m]
   (if (instance? clojure.lang.IObj value)
-    (vary-meta value assoc :kindly/kind kind)
+    (vary-meta value merge m)
     (attach-kind-to-value [value] kind)))
+
+(defn- attach-kind-to-value
+  [value kind]
+  (attach-meta-to-value [value {:kindly/kind kind}]))
 
 (defn hide-code
   "Annotate whether the code of this value should be hidden"
@@ -18,10 +21,14 @@
       (hide-code [value]))))
 
 (defn consider
-  "Prefer using the functions in the kind namespace instead"
-  [value kind]
-  (cond (keyword? kind) (attach-kind-to-value value kind)
-        (fn? kind) (consider value (kind))))
+  "Add metadata to a given value.
+A values which cannot have metadata
+(i.e., is not an instance of `IObj`)
+is wrapped in a vector first"
+  [value m]
+  (cond (keyword? m) (attach-kind-to-value value m)
+        (fn? m) (consider value (m))
+        (map? m) (attach-meta-to-value value m)))
 
 (def known-kinds
   "A set of common visualization requests"

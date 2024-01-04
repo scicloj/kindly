@@ -1,13 +1,13 @@
 (ns scicloj.kindly.v4.api
   "See the kind namespace")
 
-(defn- attach-meta-to-value
+(defn attach-meta-to-value
   [value m]
   (if (instance? clojure.lang.IObj value)
     (vary-meta value merge m)
     (attach-meta-to-value [value] m)))
 
-(defn- attach-kind-to-value
+(defn attach-kind-to-value
   [value kind]
   (attach-meta-to-value [value {:kindly/kind kind}]))
 

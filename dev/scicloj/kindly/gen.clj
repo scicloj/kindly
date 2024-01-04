@@ -81,7 +81,7 @@
 
 (defn attach-kind-to-value
   [value kind]
-  (attach-meta-to-value [value {:kindly/kind kind}]))
+  (attach-meta-to-value value {:kindly/kind kind}))
 
 (defn hide-code
   \"Annotate whether the code of this value should be hidden\"

@@ -28,10 +28,10 @@
             "  ([value] (hide-code (attach-kind-to-value value " kind-kw "))) ")
            (str
             "  ([value] (attach-kind-to-value value " kind-kw ")) "))
-         (when (:support-options attrs)
-           (str  \newline
-                 "  ([value options] (" kind " (vary-meta value assoc :kindly/options options)))"))
+         (str  \newline
+               "  ([value options] (" (symbol "scicloj.kindly.v4.kind" (name kind)) " (vary-meta value assoc :kindly/options options)))")
          ")" \newline)))
+
 
 (defn kind-fns [all-kinds]
   (str/join (str \newline \newline)

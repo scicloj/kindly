@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file. This change
 
 ## [4-alpha11] - 2024-01-05
 - with an additional argument, kind functions attach options as metadata
+- all kind function support the additional options argument
 
 ## [4-alpha10] - 2024-01-04
 - extended `consider` to support attaching map metadata

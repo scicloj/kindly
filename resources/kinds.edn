@@ -95,20 +95,17 @@
    [echarts {:display-as "a chart"
              :example    [["a" "b" "c" "d"]
                           [1 2 3 4]]
-             :docs       "https://echarts.apache.org/en/option.html"
-             :support-options true}]
+             :docs       "https://echarts.apache.org/en/option.html"}]
    [cytoscape {:display-as  "a graph"
                :example     {:nodes #{1 2 3 4 5}
                              :edges #{[1 2] [3 5] [4 2] [4 3]}}
                :docs        "https://js.cytoscape.org/#notation/elements-json"
-               :json-schema "https://raw.githubusercontent.com/AZaitzeff/cytoscape_js_schema/main/cytoscape_schema.json"
-               :support-options true}]
+               :json-schema "https://raw.githubusercontent.com/AZaitzeff/cytoscape_js_schema/main/cytoscape_schema.json"}]
    [plotly {:display-as "a plot"
             :example [{:x [1, 2, 3, 4, 5],
                        :y [1, 2, 4, 8, 16]}]
             :docs "https://plotly.com/javascript/getting-started/"
-            :json-schema "https://plotly.com/chart-studio-help/json-chart-schema/"
-            :support-options true}]]]
+            :json-schema "https://plotly.com/chart-studio-help/json-chart-schema/"}]]]
 
  ["specific types"
   [[image {:display-as "an image"
@@ -138,8 +135,7 @@
  ["other recursive structures"
   [[table {:display-as "a table"
            :example    {:headers [:a]
-                        :rows    [{:a 1} {:a 2}]}
-           :support-options true}]
+                        :rows    [{:a 1} {:a 2}]}}]
    [portal {:display-as "portal"
             :example    {:key1 "value1",
                          :key2 ^{:kindly/kind :kind/hiccup} [:div [:h3 "Hello " [:em "World"]]]}}]]]]

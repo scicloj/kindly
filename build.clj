@@ -14,11 +14,6 @@
   (:require [clojure.tools.build.api :as b]
             [deps-deploy.deps-deploy :as dd]))
 
-(def lib 'org.scicloj/kindly)
-(def version "4-alpha10")
-#_ ; alternatively, use MAJOR.MINOR.COMMITS:
-(def version (format "1.0.%s" (b/git-count-revs nil)))
-
 (def version "4-alpha10")
 (def snapshot (str version "-SNAPSHOT"))
 (def class-dir "target/classes")

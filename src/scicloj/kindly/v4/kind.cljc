@@ -73,32 +73,32 @@ json-schema: https://vega.github.io/schema/vega-lite/v5.json"
 
 (defn echarts
   "display-as: a chart
-example: [[\"a\" \"b\" \"c\" \"d\"] [1 2 3 4]]
-docs: https://echarts.apache.org/en/option.html
-support-options: true"
+  example: [[\"a\" \"b\" \"c\" \"d\"] [1 2 3 4]]
+  docs: https://echarts.apache.org/en/option.html
+  support-options: true"
   ([] :kind/echarts)
-  ([value] (attach-kind-to-value value :kind/echarts)) 
-  ([value options] (echarts [value options])))
+  ([value] (attach-kind-to-value value :kind/echarts))
+  ([value options] (echarts (vary-meta value assoc :kindly/options options))))
 
 (defn cytoscape
   "display-as: a graph
-example: {:nodes #{1 4 3 2 5}, :edges #{[4 3] [4 2] [1 2] [3 5]}}
-docs: https://js.cytoscape.org/#notation/elements-json
-json-schema: https://raw.githubusercontent.com/AZaitzeff/cytoscape_js_schema/main/cytoscape_schema.json
-support-options: true"
+  example: {:nodes #{1 4 3 2 5}, :edges #{[4 3] [4 2] [1 2] [3 5]}}
+  docs: https://js.cytoscape.org/#notation/elements-json
+  json-schema: https://raw.githubusercontent.com/AZaitzeff/cytoscape_js_schema/main/cytoscape_schema.json
+  support-options: true"
   ([] :kind/cytoscape)
-  ([value] (attach-kind-to-value value :kind/cytoscape)) 
-  ([value options] (cytoscape [value options])))
+  ([value] (attach-kind-to-value value :kind/cytoscape))
+  ([value options] (cytoscape (vary-meta value assoc :kindly/options options))))
 
 (defn plotly
   "display-as: a plot
-example: [{:x [1 2 3 4 5], :y [1 2 4 8 16]}]
-docs: https://plotly.com/javascript/getting-started/
-json-schema: https://plotly.com/chart-studio-help/json-chart-schema/
-support-options: true"
+  example: [{:x [1 2 3 4 5], :y [1 2 4 8 16]}]
+  docs: https://plotly.com/javascript/getting-started/
+  json-schema: https://plotly.com/chart-studio-help/json-chart-schema/
+  support-options: true"
   ([] :kind/plotly)
-  ([value] (attach-kind-to-value value :kind/plotly)) 
-  ([value options] (plotly [value options])))
+  ([value] (attach-kind-to-value value :kind/plotly))
+  ([value options] (plotly (vary-meta value assoc :kindly/options options))))
 
 
 ;; ## specific types
@@ -166,12 +166,11 @@ example: {:key1 \"value1\", :key2 \"value2\"}"
 example: {:headers [:a], :rows [{:a 1} {:a 2}]}
 support-options: true"
   ([] :kind/table)
-  ([value] (attach-kind-to-value value :kind/table)) 
-  ([value options] (table [value options])))
+  ([value] (attach-kind-to-value value :kind/table))
+  ([value options] (table (vary-meta value assoc :kindly/options options))))
 
 (defn portal
   "display-as: portal
 example: {:key1 \"value1\", :key2 [:div [:h3 \"Hello \" [:em \"World\"]]]}"
   ([] :kind/portal)
   ([value] (attach-kind-to-value value :kind/portal)) )
-

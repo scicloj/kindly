@@ -30,7 +30,7 @@
             "  ([value] (attach-kind-to-value value " kind-kw ")) "))
          (when (:support-options attrs)
            (str  \newline
-                 "  ([value options] (" kind " [value options]))"))
+                 "  ([value options] (" kind " (vary-meta value assoc :kindly/options options)))"))
          ")" \newline)))
 
 (defn kind-fns [all-kinds]

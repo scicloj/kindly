@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [4-alpha11] - 2024-01-05
+- with an additional argument, kind functions attach options as metadata
+
 ## [4-alpha10] - 2024-01-04
 - extended `consider` to support attaching map metadata
 

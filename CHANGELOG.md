@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [4-alpha12] - 2024-01-11
+- removed the `:hide-code` property that some kinds had by default
+
 ## [4-alpha11] - 2024-01-05
 - with an additional argument, kind functions attach options as metadata
 - all kind function support the additional options argument

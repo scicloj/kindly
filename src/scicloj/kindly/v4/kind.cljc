@@ -48,18 +48,16 @@ example: [(fn [] [:button {:on-click (fn [ev] (js/alert \"You pressed it\"))} \"
 
 (defn md
   "display-as: a Markdown string
-example: ## Hello *World*
-hide-code: true"
+example: ## Hello *World*"
   ([] :kind/md)
-  ([value] (hide-code (attach-kind-to-value value :kind/md))) 
+  ([value] (attach-kind-to-value value :kind/md)) 
   ([value options] (scicloj.kindly.v4.kind/md (vary-meta value assoc :kindly/options options))))
 
 (defn code
   "display-as: the code only, not the result
-example: (+ 1 2)
-hide-code: true"
+example: (+ 1 2)"
   ([] :kind/code)
-  ([value] (hide-code (attach-kind-to-value value :kind/code))) 
+  ([value] (attach-kind-to-value value :kind/code)) 
   ([value options] (scicloj.kindly.v4.kind/code (vary-meta value assoc :kindly/options options))))
 
 (defn vega

@@ -15,11 +15,9 @@
 
  ["data visualization formats"
   [[md {:display-as            "a Markdown string"
-        :example               "## Hello *World*"
-        :hide-code             true}]
+        :example               "## Hello *World*"}]
    [code {:display-as          "the code only, not the result"
-          :example             (+ 1 2)
-          :hide-code           true}]
+          :example             (+ 1 2)}]
    [vega {:display-as          "a chart"
           :example             {:description "A basic bar chart example, with value labels shown upon pointer hover.",
                                 :axes        [{:orient "bottom", :scale "xscale"}

@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file. This change
 
 ## [4-alpha12] - 2024-01-11
 - removed the `:hide-code` property that some kinds had by default
+- added `kind/smile-model`
 
 ## [4-alpha11] - 2024-01-05
 - with an additional argument, kind functions attach options as metadata

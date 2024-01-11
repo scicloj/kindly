@@ -122,6 +122,13 @@ docs: https://github.com/techascent/tech.ml.dataset"
   ([value] (attach-kind-to-value value :kind/dataset)) 
   ([value options] (scicloj.kindly.v4.kind/dataset (vary-meta value assoc :kindly/options options))))
 
+(defn smile-model
+  "display-as: the `str` value should be displayesd as code
+docs: https://haifengl.github.io/"
+  ([] :kind/smile-model)
+  ([value] (attach-kind-to-value value :kind/smile-model)) 
+  ([value options] (scicloj.kindly.v4.kind/smile-model (vary-meta value assoc :kindly/options options))))
+
 
 ;; ## clojure specific
 

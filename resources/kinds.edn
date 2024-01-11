@@ -112,7 +112,9 @@
              :example    (->> (System/getProperties)
                               (map (fn [[k v]] {:k k :v (apply str (take 40 (str v)))}))
                               (tech.v3.dataset/->>dataset {:dataset-name "My Truncated System Properties"}))
-             :docs       "https://github.com/techascent/tech.ml.dataset"}]]]
+             :docs       "https://github.com/techascent/tech.ml.dataset"}]
+   [smile-model {:display-as "the `str` value should be displayesd as code"
+                 :docs "https://haifengl.github.io/"}]]]
 
  ["clojure specific"
   [[var {:display-as "the name of a var"

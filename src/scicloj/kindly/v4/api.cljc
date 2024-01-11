@@ -51,6 +51,7 @@ is wrapped in a vector first"
 ;; specific types
     :kind/image
     :kind/dataset
+    :kind/smile-model
 ;; clojure specific
     :kind/var
     :kind/test

@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [4-alpha13] - 2024-01-18
+- added `:kind/video`
+
 ## [4-alpha12] - 2024-01-11
 - removed the `:hide-code` property that some kinds had by default
 - added `kind/smile-model`

@@ -103,7 +103,9 @@
             :example [{:x [1, 2, 3, 4, 5],
                        :y [1, 2, 4, 8, 16]}]
             :docs "https://plotly.com/javascript/getting-started/"
-            :json-schema "https://plotly.com/chart-studio-help/json-chart-schema/"}]]]
+            :json-schema "https://plotly.com/chart-studio-help/json-chart-schema/"}]
+   [video {:display-as "an embedded video"
+           :example {:youtube-id "MXHI4mgfVk8"}}]]]
 
  ["specific types"
   [[image {:display-as "an image"

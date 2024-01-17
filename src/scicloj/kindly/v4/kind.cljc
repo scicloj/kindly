@@ -104,6 +104,13 @@ json-schema: https://plotly.com/chart-studio-help/json-chart-schema/"
   ([value] (attach-kind-to-value value :kind/plotly)) 
   ([value options] (scicloj.kindly.v4.kind/plotly (vary-meta value assoc :kindly/options options))))
 
+(defn video
+  "display-as: an embedded video
+example: {:youtube-id \"MXHI4mgfVk8\"}"
+  ([] :kind/video)
+  ([value] (attach-kind-to-value value :kind/video)) 
+  ([value options] (scicloj.kindly.v4.kind/video (vary-meta value assoc :kindly/options options))))
+
 
 ;; ## specific types
 

@@ -16,8 +16,10 @@
  ["data visualization formats"
   [[md {:display-as            "a Markdown string"
         :example               "## Hello *World*"}]
-   [code {:display-as          "a piece of Clojure code"
+   [code {:display-as          "a piece syntax highlighted Clojure code"
           :example             "(+ 1 2)"}]
+   [edn {:display-as           "a piece syntax highlighted EDN structure"
+         :example              "{:x [1 2 3]}"}]
    [vega {:display-as          "a chart"
           :example             {:description "A basic bar chart example, with value labels shown upon pointer hover.",
                                 :axes        [{:orient "bottom", :scale "xscale"}
@@ -140,4 +142,7 @@
                         :rows    [{:a 1} {:a 2}]}}]
    [portal {:display-as "portal"
             :example    {:key1 "value1",
-                         :key2 ^{:kindly/kind :kind/hiccup} [:div [:h3 "Hello " [:em "World"]]]}}]]]]
+                         :key2 ^{:kindly/kind :kind/hiccup} [:div [:h3 "Hello " [:em "World"]]]}}]]]
+
+ ["meta kinds"
+  [[fragment {:display-as "consider one toplevel context with a sequential value as many toplevel contexts of various kinds"}]]]]

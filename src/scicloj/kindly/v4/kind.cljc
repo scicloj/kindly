@@ -54,11 +54,18 @@ example: ## Hello *World*"
   ([value options] (scicloj.kindly.v4.kind/md (vary-meta value assoc :kindly/options options))))
 
 (defn code
-  "display-as: the code only, not the result
+  "display-as: a piece syntax highlighted Clojure code
 example: (+ 1 2)"
   ([] :kind/code)
   ([value] (attach-kind-to-value value :kind/code)) 
   ([value options] (scicloj.kindly.v4.kind/code (vary-meta value assoc :kindly/options options))))
+
+(defn edn
+  "display-as: a piece syntax highlighted EDN structure
+example: {:x [1 2 3]}"
+  ([] :kind/edn)
+  ([value] (attach-kind-to-value value :kind/edn)) 
+  ([value options] (scicloj.kindly.v4.kind/edn (vary-meta value assoc :kindly/options options))))
 
 (defn vega
   "display-as: a chart
@@ -200,4 +207,13 @@ example: {:key1 \"value1\", :key2 [:div [:h3 \"Hello \" [:em \"World\"]]]}"
   ([] :kind/portal)
   ([value] (attach-kind-to-value value :kind/portal)) 
   ([value options] (scicloj.kindly.v4.kind/portal (vary-meta value assoc :kindly/options options))))
+
+
+;; ## meta kinds
+
+(defn fragment
+  "display-as: consider one toplevel context with a sequential value as many toplevel contexts of various kinds"
+  ([] :kind/fragment)
+  ([value] (attach-kind-to-value value :kind/fragment)) 
+  ([value options] (scicloj.kindly.v4.kind/fragment (vary-meta value assoc :kindly/options options))))
 

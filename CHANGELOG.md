@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [4-alpha14] - 2024-02-01
+- added `:kind/edn`, `:kind/fragment`
+
 ## [4-alpha13] - 2024-01-18
 - added `:kind/video`
 

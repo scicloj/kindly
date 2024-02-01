@@ -43,6 +43,7 @@ is wrapped in a vector first"
 ;; data visualization formats
     :kind/md
     :kind/code
+    :kind/edn
     :kind/vega
     :kind/vega-lite
     :kind/echarts
@@ -63,4 +64,6 @@ is wrapped in a vector first"
     :kind/map
 ;; other recursive structures
     :kind/table
-    :kind/portal})
+    :kind/portal
+;; meta kinds
+    :kind/fragment})

@@ -108,8 +108,8 @@
             :json-schema "https://plotly.com/chart-studio-help/json-chart-schema/"}]
    [video {:display-as "an embedded video"
            :example {:youtube-id "MXHI4mgfVk8"}}]
-   [observablei {:display-as "Observable visualizations"
-                 :docs "https://observablehq.com/"}]]]
+   [observable {:display-as "Observable visualizations"
+                :docs "https://observablehq.com/"}]]]
 
  ["specific types"
   [[image {:display-as "an image"

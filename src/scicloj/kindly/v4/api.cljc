@@ -50,7 +50,7 @@ is wrapped in a vector first"
     :kind/cytoscape
     :kind/plotly
     :kind/video
-    :kind/observablei
+    :kind/observable
 ;; specific types
     :kind/image
     :kind/dataset

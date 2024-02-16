@@ -118,12 +118,12 @@ example: {:youtube-id \"MXHI4mgfVk8\"}"
   ([value] (attach-kind-to-value value :kind/video)) 
   ([value options] (scicloj.kindly.v4.kind/video (vary-meta value assoc :kindly/options options))))
 
-(defn observablei
+(defn observable
   "display-as: Observable visualizations
 docs: https://observablehq.com/"
-  ([] :kind/observablei)
-  ([value] (attach-kind-to-value value :kind/observablei)) 
-  ([value options] (scicloj.kindly.v4.kind/observablei (vary-meta value assoc :kindly/options options))))
+  ([] :kind/observable)
+  ([value] (attach-kind-to-value value :kind/observable)) 
+  ([value options] (scicloj.kindly.v4.kind/observable (vary-meta value assoc :kindly/options options))))
 
 
 ;; ## specific types

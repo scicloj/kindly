@@ -111,6 +111,13 @@ json-schema: https://plotly.com/chart-studio-help/json-chart-schema/"
   ([value] (attach-kind-to-value value :kind/plotly)) 
   ([value options] (scicloj.kindly.v4.kind/plotly (vary-meta value assoc :kindly/options options))))
 
+(defn htmlwidgets-plotly
+  "display-as: a plot rendered by the JS client side of Plotly R
+docs: https://plotly.com/r/"
+  ([] :kind/htmlwidgets-plotly)
+  ([value] (attach-kind-to-value value :kind/htmlwidgets-plotly)) 
+  ([value options] (scicloj.kindly.v4.kind/htmlwidgets-plotly (vary-meta value assoc :kindly/options options))))
+
 (defn video
   "display-as: an embedded video
 example: {:youtube-id \"MXHI4mgfVk8\"}"

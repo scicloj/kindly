@@ -106,6 +106,8 @@
                        :y [1, 2, 4, 8, 16]}]
             :docs "https://plotly.com/javascript/getting-started/"
             :json-schema "https://plotly.com/chart-studio-help/json-chart-schema/"}]
+   [htmlwidgets-plotly {:display-as "a plot rendered by the JS client side of Plotly R"
+                        :docs "https://plotly.com/r/"}]
    [video {:display-as "an embedded video"
            :example {:youtube-id "MXHI4mgfVk8"}}]
    [observable {:display-as "Observable visualizations"

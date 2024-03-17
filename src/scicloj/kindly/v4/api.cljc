@@ -49,6 +49,7 @@ is wrapped in a vector first"
     :kind/echarts
     :kind/cytoscape
     :kind/plotly
+    :kind/htmlwidgets-plotly
     :kind/video
     :kind/observable
 ;; specific types

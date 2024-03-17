@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [4-alpha17] - 2024-03-17
+- added `:kind/htmlwidgets-plotly`
+
 ## [4-alpha16] - 2024-02-16
 - typo in kind `:kind/observablei` -> `:kind/observable`
 

@@ -53,6 +53,7 @@ is wrapped in a vector first"
     :kind/htmlwidgets-ggplotly
     :kind/video
     :kind/observable
+    :kind/highcharts
 ;; specific types
     :kind/image
     :kind/dataset

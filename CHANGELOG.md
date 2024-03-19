@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [4-alpha19] - 2024-03-19
+- added `:kind/highcharts`
+
 ## [4-alpha18] - 2024-03-19
 - added `:kind/htmlwidgets-ggplotly`
 
@@ -88,7 +91,7 @@ All notable changes to this project will be documented in this file. This change
 a revised conceptual model:
 - a tiny general api giving advice to tools
 - default behavior is only one kind of advice
-  - :kind/pprint is the default 
+  - :kind/pprint is the default
   - looking into the form rather than the code
 
 ## [2-alpha2] - 2022-04-05

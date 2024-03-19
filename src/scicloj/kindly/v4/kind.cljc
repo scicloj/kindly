@@ -139,6 +139,13 @@ docs: https://observablehq.com/"
   ([value] (attach-kind-to-value value :kind/observable)) 
   ([value options] (scicloj.kindly.v4.kind/observable (vary-meta value assoc :kindly/options options))))
 
+(defn highcharts
+  "display-as: a chart
+  docs: https://www.highcharts.com/docs/index"
+  ([] :kind/highcharts)
+  ([value] (attach-kind-to-value value :kind/highcharts))
+  ([value options] (scicloj.kindly.v4.kind/observable (vary-meta value assoc :kind/highcharts options))))
+
 
 ;; ## specific types
 

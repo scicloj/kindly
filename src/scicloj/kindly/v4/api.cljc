@@ -50,6 +50,7 @@ is wrapped in a vector first"
     :kind/cytoscape
     :kind/plotly
     :kind/htmlwidgets-plotly
+    :kind/htmlwidgets-ggplotly
     :kind/video
     :kind/observable
 ;; specific types

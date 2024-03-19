@@ -108,6 +108,8 @@
             :json-schema "https://plotly.com/chart-studio-help/json-chart-schema/"}]
    [htmlwidgets-plotly {:display-as "a plot rendered by the JS client side of Plotly R"
                         :docs "https://plotly.com/r/"}]
+   [htmlwidgets-ggplotly {:display-as "a plot rendered by the JS client side of Plotly R, specifically for a ggplotly plot"
+                          :docs "https://plotly.com/ggplot2/"}]
    [video {:display-as "an embedded video"
            :example {:youtube-id "MXHI4mgfVk8"}}]
    [observable {:display-as "Observable visualizations"

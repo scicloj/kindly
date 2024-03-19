@@ -118,6 +118,13 @@ docs: https://plotly.com/r/"
   ([value] (attach-kind-to-value value :kind/htmlwidgets-plotly)) 
   ([value options] (scicloj.kindly.v4.kind/htmlwidgets-plotly (vary-meta value assoc :kindly/options options))))
 
+(defn htmlwidgets-ggplotly
+  "display-as: a plot rendered by the JS client side of Plotly R, specifically for a ggplotly plot
+docs: https://plotly.com/ggplot2/"
+  ([] :kind/htmlwidgets-ggplotly)
+  ([value] (attach-kind-to-value value :kind/htmlwidgets-ggplotly)) 
+  ([value options] (scicloj.kindly.v4.kind/htmlwidgets-ggplotly (vary-meta value assoc :kindly/options options))))
+
 (defn video
   "display-as: an embedded video
 example: {:youtube-id \"MXHI4mgfVk8\"}"

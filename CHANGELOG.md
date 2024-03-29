@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
 ## [4-beta1] - 2024-03-29
-(just renaming the previous release ase Beta) 
+(just renaming the previous release as Beta) 
 
 ## [4-alpha19] - 2024-03-19
 - added `:kind/highcharts`

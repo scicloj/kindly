@@ -70,4 +70,5 @@ is wrapped in a vector first"
     :kind/table
     :kind/portal
 ;; meta kinds
-    :kind/fragment})
+    :kind/fragment
+    :kind/fn})

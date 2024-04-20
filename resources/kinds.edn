@@ -194,4 +194,7 @@
               :example [^:kind/md ["**hello**"]
                         ^:kind/hiccup [:p [:b "hello"]]]}]
    [fn {:display-as "the evaluation of the given function and arguments"
-        :example [+ 2 3]}]]]]
+        :example [+ 2 3]}]
+   [test-last {:display-as "invisible (both code and value), but generates a test"
+               :example ; check whether the last eval result is greater than 9
+               [> 9]}]]]]

@@ -255,3 +255,10 @@ example: [+ 2 3]"
   ([value] (attach-kind-to-value value :kind/fn)) 
   ([value options] (scicloj.kindly.v4.kind/fn (vary-meta value assoc :kindly/options options))))
 
+(defn test-last
+  "display-as: invisible (both code and value), but generates a test
+example: [> 9]"
+  ([] :kind/test-last)
+  ([value] (attach-kind-to-value value :kind/test-last)) 
+  ([value options] (scicloj.kindly.v4.kind/test-last (vary-meta value assoc :kindly/options options))))
+

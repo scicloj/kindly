@@ -30,6 +30,11 @@ is wrapped in a vector first"
         (fn? m) (consider value (m))
         (map? m) (attach-meta-to-value value m)))
 
+(defn check
+  "Add a generated test using `:kind/test-last`"
+  [& args]
+  (consider args :kind/test-last))
+
 (def known-kinds
   "A set of common visualization requests"
   #{

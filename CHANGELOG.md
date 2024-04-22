@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [4-beta4-SNAPSHOT] - unreleased
+- syntactic sugar for `:kind/test-last`
+
 ## [4-beta3] - 2024-04-20
 - added `:kind/test-last`
 

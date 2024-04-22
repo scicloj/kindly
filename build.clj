@@ -15,7 +15,7 @@
             [deps-deploy.deps-deploy :as dd]))
 
 (def lib 'org.scicloj/kindly)
-(def version "4-beta4-SNAPSHOT")
+(def version "4-beta4")
 (def snapshot (str version "-SNAPSHOT"))
 (def class-dir "target/classes")
 

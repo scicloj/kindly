@@ -1,9 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
-## [4-beta5]
+## [4-beta5] - 2024-06-14
 - added `:kind/tex`
-
+  
 ## [4-beta4]
 - syntactic sugar for `:kind/test-last`
 

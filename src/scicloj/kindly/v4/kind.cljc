@@ -53,6 +53,13 @@ example: ## Hello *World*"
   ([value] (attach-kind-to-value value :kind/md)) 
   ([value options] (scicloj.kindly.v4.kind/md (vary-meta value assoc :kindly/options options))))
 
+(defn tex
+  "display-as: a TeX formula
+example: x^2"
+  ([] :kind/tex)
+  ([value] (attach-kind-to-value value :kind/tex)) 
+  ([value options] (scicloj.kindly.v4.kind/tex (vary-meta value assoc :kindly/options options))))
+
 (defn code
   "display-as: a piece syntax highlighted Clojure code
 example: (+ 1 2)"

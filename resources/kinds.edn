@@ -16,6 +16,8 @@
  ["data visualization formats"
   [[md {:display-as            "a Markdown string"
         :example               "## Hello *World*"}]
+   [tex {:display-as "a TeX formula"
+         :example "x^2"}]
    [code {:display-as          "a piece syntax highlighted Clojure code"
           :example             "(+ 1 2)"}]
    [edn {:display-as           "a piece syntax highlighted EDN structure"

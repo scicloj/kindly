@@ -47,6 +47,7 @@ is wrapped in a vector first"
     :kind/reagent
 ;; data visualization formats
     :kind/md
+    :kind/tex
     :kind/code
     :kind/edn
     :kind/vega

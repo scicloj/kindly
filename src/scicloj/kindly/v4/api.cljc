@@ -41,6 +41,7 @@ is wrapped in a vector first"
 ;; simple behaviours
     :kind/pprint
     :kind/hidden
+    :kind/hide-code
 ;; web dev
     :kind/html
     :kind/hiccup

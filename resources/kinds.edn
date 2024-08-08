@@ -158,7 +158,7 @@
 
  ["specific types"
   [[image {:display-as "an image"
-           :example    "https://raw.githubusercontent.com/scicloj/graphic-design/live/icons/Kindly.svg"}]
+           :example    "At the moment, java BufferedImage objects are supported."}]
    [dataset {:display-as "a table"
              :example    (->> (System/getProperties)
                               (map (fn [[k v]] {:k k :v (apply str (take 40 (str v)))}))

@@ -160,7 +160,7 @@ json-schema: "
 
 (defn image
   "display-as: an image
-example: https://raw.githubusercontent.com/scicloj/graphic-design/live/icons/Kindly.svg"
+example: At the moment, java BufferedImage objects are supported."
   ([] :kind/image)
   ([value] (attach-kind-to-value value :kind/image)) 
   ([value options] (scicloj.kindly.v4.kind/image (vary-meta value assoc :kindly/options options))))

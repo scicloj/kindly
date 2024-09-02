@@ -23,8 +23,8 @@
                      (str (name k) ": " (escape v))))
          "\"" \newline
          "  ([] " kind-kw ")" \newline
-         "  ([value] (" kind " nil))" \newline
-         "  ([value options] (attach-meta-to-value value {:kindly/kind " kind-kw " :kindly/options options})))"
+         "  ([value] (" kind " value nil))" \newline
+         "  ([value options] (kindly/attach-meta-to-value value {:kindly/kind " kind-kw " :kindly/options options})))"
          \newline)))
 
 (defn kind-fns [all-kinds]
@@ -44,7 +44,7 @@
 (defn kind-ns [all-kinds]
   (str "(ns scicloj.kindly.v4.kind
   \"Kinds for visualization\"
-  (:require [scicloj.kindly.v4.api :refer [attach-kind-to-value hide-code]])
+  (:require [scicloj.kindly.v4.api :as kindly])
   (:refer-clojure :exclude " (excludes all-kinds) "))
 
 " (kind-fns all-kinds) \newline))

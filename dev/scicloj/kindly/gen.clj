@@ -23,7 +23,7 @@
                      (str (name k) ": " (escape v))))
          "\"" \newline
          "  ([] " kind-kw ")" \newline
-         "  ([value] (" kind " value nil))" \newline
+         "  ([value] (scicloj.kindly.v4.kind/" kind " value nil))" \newline
          "  ([value options] (kindly/attach-meta-to-value value {:kindly/kind " kind-kw " :kindly/options options})))"
          \newline)))
 
@@ -77,21 +77,37 @@
   See the kindly documentation for valid options.\"
   nil)
 
+(defn deep-merge
+  \"Recursively merges maps together. If all the maps supplied have nested maps
+  under the same keys, these nested maps are merged. Otherwise the value is
+  overwritten, as in `clojure.core/merge`.\"
+  {:arglists '([& maps])}
+  ([])
+  ([a] a)
+  ([a b]
+   (when (or a b)
+     (letfn [(merge-entry [m e]
+               (let [k  (key e)
+                     v' (val e)]
+                 (if (contains? m k)
+                   (assoc m k (let [v (get m k)]
+                                (if (and (map? v) (map? v'))
+                                  (deep-merge v v')
+                                  v')))
+                   (assoc m k v'))))]
+       (reduce merge-entry (or a {}) (seq b)))))
+  ([a b & more]
+   (reduce deep-merge (or a {}) (cons b more))))
+
 (defn attach-meta-to-value
   [value m]
   (if (instance? clojure.lang.IObj value)
-    (vary-meta value merge m)
+    (vary-meta value deep-merge {:kindly/options *options*} m)
     (attach-meta-to-value [value] m)))
 
 (defn attach-kind-to-value
   [value kind]
   (attach-meta-to-value value {:kindly/kind kind}))
-
-(defn attach-options
-  [value m]
-  (if (instance? clojure.lang.IObj value)
-    (vary-meta value update :kindly/options merge m)
-    (attach-options [value] m)))
 
 (defn hide-code
   \"Annotate whether the code of this value should be hidden\"
@@ -99,7 +115,6 @@
     (hide-code value true))
   ([value bool]
    ;; Will change when Clay is updated
-   ;;(attach-options value {:hide-code bool})
    (attach-meta-to-value value {:kindly/hide-code bool})))
 
 (defn consider

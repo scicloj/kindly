@@ -23,15 +23,9 @@
                      (str (name k) ": " (escape v))))
          "\"" \newline
          "  ([] " kind-kw ")" \newline
-         (if (:hide-code attrs)
-           (str
-            "  ([value] (hide-code (attach-kind-to-value value " kind-kw "))) ")
-           (str
-            "  ([value] (attach-kind-to-value value " kind-kw ")) "))
-         (str  \newline
-               "  ([value options] (" (symbol "scicloj.kindly.v4.kind" (name kind)) " (vary-meta value assoc :kindly/options options)))")
-         ")" \newline)))
-
+         "  ([value] (" kind " nil))"
+         "  ([value options] (attach-meta-to-value value {:kindly/kind " kind-kw " :kindly/options options})))"
+         \newline)))
 
 (defn kind-fns [all-kinds]
   (str/join (str \newline \newline)
@@ -73,6 +67,16 @@
   (str "(ns scicloj.kindly.v4.api
   \"See the kind namespace\")
 
+(def ^:dynamic *options*
+  \"Visualization tools take options in the following priority:
+
+  1. options on the metadata of a form or value
+  3. kind specific options found in the `:kinds` map of this dynamic var
+  2. options found in this dynamic var
+
+  See the kindly documentation for valid options.\"
+  nil)
+
 (defn attach-meta-to-value
   [value m]
   (if (instance? clojure.lang.IObj value)
@@ -83,14 +87,20 @@
   [value kind]
   (attach-meta-to-value value {:kindly/kind kind}))
 
+(defn attach-options
+  [value m]
+  (if (instance? clojure.lang.IObj value)
+    (vary-meta value update :kindly/options merge m)
+    (attach-options [value] m)))
+
 (defn hide-code
   \"Annotate whether the code of this value should be hidden\"
   ([value]
     (hide-code value true))
   ([value bool]
-    (if (instance? clojure.lang.IObj value)
-      (vary-meta value assoc :kindly/hide-code true)
-      (hide-code [value]))))
+   ;; Will change when Clay is updated
+   ;;(attach-options value {:hide-code bool})
+   (attach-meta-to-value value {:kindly/hide-code bool})))
 
 (defn consider
   \"Add metadata to a given value.

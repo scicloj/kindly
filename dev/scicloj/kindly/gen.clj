@@ -23,7 +23,7 @@
                      (str (name k) ": " (escape v))))
          "\"" \newline
          "  ([] " kind-kw ")" \newline
-         "  ([value] (" kind " nil))"
+         "  ([value] (" kind " nil))" \newline
          "  ([value options] (attach-meta-to-value value {:kindly/kind " kind-kw " :kindly/options options})))"
          \newline)))
 

@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
-## [4-beta7] - TBD
+## [4-beta7] - 2024-09-06
 - added `*options*` as an alternative to passing options per form
 
 ## [4-beta6] - 2024-08-08

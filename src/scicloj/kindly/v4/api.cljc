@@ -5,8 +5,8 @@
   "Visualization tools take options in the following priority:
 
   1. options on the metadata of a form or value
-  3. kind specific options found in the `:kinds` map of this dynamic var
-  2. options found in this dynamic var
+  2. kind specific options found in the `:kinds` map of this dynamic var
+  3. options found in this dynamic var
 
   See the kindly documentation for valid options."
   nil)

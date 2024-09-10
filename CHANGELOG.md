@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [4-beta8] - 2024-09-10
+- moved options into ns metadata (PR #6)
+
 ## [4-beta7] - 2024-09-06
 - added `*options*` as an alternative to passing options per form
 

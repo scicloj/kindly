@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
 ## [4-beta9] - 2024-09-10
+- handling nils carefully in `deep-merge`
+
+## [4-beta9] - 2024-09-10
 - making `merge-options!` and `set-options!` calls hidden in notebooks
 
 ## [4-beta8] - 2024-09-10

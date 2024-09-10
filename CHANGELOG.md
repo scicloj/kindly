@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
-## [4-beta10] - 2024-09-10
+## [4-beta11] - 2024-09-10
 - ignoring nils in `deep-merge`
 
 ## [4-beta9] - 2024-09-10

@@ -24,7 +24,10 @@
                             {:a {:b {:c 9 :d 11}}}
                             {:a {:b {:d 12}}})
          {:a {:b {:c 9 :d 12}}})
-      "more than two arguments are allowed"))
+      "more than two arguments are allowed")
+  (is (= (kindly/deep-merge)
+         {})
+      "no arguments mean an empty map"))
 
 (deftest options-test
   (kindly/set-options! {:foo "bar"})

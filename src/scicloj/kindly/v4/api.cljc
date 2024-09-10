@@ -19,7 +19,8 @@
        (reduce (fn m [a b]
                  (if (and (map? a) (map? b))
                    (merge-with m a b)
-                   b)))))
+                   b))
+               {})))
 
 (defn get-options
   []

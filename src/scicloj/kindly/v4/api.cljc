@@ -1,15 +1,28 @@
 (ns scicloj.kindly.v4.api
   "See the kind namespace")
 
-(def ^:dynamic *options*
-  "Visualization tools take options in the following priority:
+(defn deep-merge
+  "Recursively merges maps only."
+  [& xs]
+  (reduce (fn m [a b]
+            (if (and (map? a) (map? b))
+              (merge-with m a b)
+              b))
+          xs))
 
-  1. options on the metadata of a form or value
-  2. kind specific options found in the `:kinds` map of this dynamic var
-  3. options found in this dynamic var
+(defn set-options!
+  "Replaces *options* with options"
+  [options]
+  (alter-meta! *ns* merge {:kindly/options options}))
 
-  See the kindly documentation for valid options."
-  nil)
+(defn merge-options!
+  "Mutates *options* with the deep merge of options"
+  [options]
+  (alter-meta! *ns* deep-merge {:kindly/options options}))
+
+(defn get-options
+  []
+  (-> (meta *ns*) :kindly/options))
 
 (defn attach-meta-to-value
   [value m]

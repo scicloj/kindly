@@ -15,7 +15,16 @@
   (is (= (kindly/deep-merge {:a {:b {:c 10}}}
                             {:a {:b nil}})
          {:a {:b nil}})
-      "should not merge nil, nil is used as a value for erasure"))
+      "should not merge nil, a nil value inside a map is used as a value for erasure")
+  (is (= (kindly/deep-merge {:a {:b {:c 10}}}
+                            nil)
+         {:a {:b {:c 10}}})
+      "nils are ignored")
+  (is (= (kindly/deep-merge {:a {:b {:c 10}}}
+                            {:a {:b {:c 9 :d 11}}}
+                            {:a {:b {:d 12}}})
+         {:a {:b {:c 9 :d 12}}})
+      "more than two arguments are allowed"))
 
 (deftest options-test
   (kindly/set-options! {:foo "bar"})

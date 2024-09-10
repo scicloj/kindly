@@ -67,29 +67,6 @@
   (str "(ns scicloj.kindly.v4.api
   \"See the kind namespace\")
 
-(defn deep-merge
-  \"Recursively merges maps only.\"
-  [& xs]
-  (reduce (fn m [a b]
-            (if (and (map? a) (map? b))
-              (merge-with m a b)
-              b))
-          xs))
-
-(defn set-options!
-  \"Replaces *options* with options\"
-  [options]
-  (alter-meta! *ns* merge {:kindly/options options}))
-
-(defn merge-options!
-  \"Mutates *options* with the deep merge of options\"
-  [options]
-  (alter-meta! *ns* deep-merge {:kindly/options options}))
-
-(defn get-options
-  []
-  (-> (meta *ns*) :kindly/options))
-
 (defn attach-meta-to-value
   [value m]
   (if (instance? clojure.lang.IObj value)
@@ -100,6 +77,19 @@
   [value kind]
   (attach-meta-to-value value {:kindly/kind kind}))
 
+(defn deep-merge
+  \"Recursively merges maps only.\"
+  [& xs]
+  (reduce (fn m [a b]
+            (if (and (map? a) (map? b))
+              (merge-with m a b)
+              b))
+          xs))
+
+(defn get-options
+  []
+  (-> (meta *ns*) :kindly/options))
+
 (defn hide-code
   \"Annotate whether the code of this value should be hidden\"
   ([value]
@@ -107,6 +97,22 @@
   ([value bool]
    ;; Will change when Clay is updated
    (attach-meta-to-value value {:kindly/hide-code bool})))
+
+(defn set-options!
+  \"Replaces *options* with options\"
+  [options]
+  (hide-code
+    (attach-kind-to-value
+      (alter-meta! *ns* merge {:kindly/options options})
+      :kind/hidden)))
+
+(defn merge-options!
+  \"Mutates *options* with the deep merge of options\"
+  [options]
+  (hide-code
+    (attach-kind-to-value
+      (alter-meta! *ns* deep-merge {:kindly/options options})
+      :kind/hidden)))
 
 (defn consider
   \"Add metadata to a given value.

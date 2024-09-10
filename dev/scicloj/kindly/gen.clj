@@ -81,7 +81,10 @@
   \"Recursively merges maps only.\"
   [& xs]
   (reduce (fn m [a b]
-            (if (and (map? a) (map? b))
+            (if (and (or (nil? a)
+                         (map? a))
+                     (or (nil? b)
+                         (map? b)))
               (merge-with m a b)
               b))
           xs))

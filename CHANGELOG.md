@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file. This change
 - ignoring nils in `deep-merge`
 
 ## [4-beta9] - 2024-09-10
-- making `merge-options!` and `set-options!` calls hidden in notebooks
+- made `merge-options!` and `set-options!` calls hidden in notebooks
 
 ## [4-beta8] - 2024-09-10
 - moved options into ns metadata (PR #6)

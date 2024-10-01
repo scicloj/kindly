@@ -134,7 +134,7 @@ docs: https://plotly.com/ggplot2/"
 
 (defn video
   "display-as: an embedded video
-example: {:youtube-id \"MXHI4mgfVk8\"}"
+example value: `{:youtube-id \"MXHI4mgfVk8\"}` or `\"file:///path/to/vid.mp4\"`"
   ([] :kind/video)
   ([value] (scicloj.kindly.v4.kind/video value nil))
   ([value options] (kindly/attach-meta-to-value value {:kindly/kind :kind/video :kindly/options options})))
@@ -233,7 +233,11 @@ example: {:key1 \"value1\", :key2 \"value2\"}"
 
 (defn table
   "display-as: a table
-example: {:headers [:a], :rows [{:a 1} {:a 2}]}"
+  examples: 
+  ```clj
+  (k/table {:col1 [1 3] :col2 [2 4]})
+  (k/table {:column-names [:col1 :col2] :row-vectors [[1 2] [3 4]]})
+  ```"
   ([] :kind/table)
   ([value] (scicloj.kindly.v4.kind/table value nil))
   ([value options] (kindly/attach-meta-to-value value {:kindly/kind :kind/table :kindly/options options})))
@@ -257,7 +261,16 @@ example: [[\"**hello**\"] [:p [:b \"hello\"]]]"
 
 (defn fn
   "display-as: the evaluation of the given function and arguments
-example: [+ 2 3]"
+   examples: 
+  ```clj
+  ;; vector form
+  (kind/fn [+ 2 3]) ; => 5
+  (kind/fn [(fn [s] (kind/md s)) "**hi**"]) ; => bold hi
+  ;; map form
+  (kind/fn {:kindly/f (fn [{:keys [x y]}] (+ x y)) :x 1 :y 2}) ; => 3
+  ;; arbitrary value + custom view fn
+  (kind/fn [\"**hi**\"] {:kindly/f (fn [[txt]] (kind/md txt))) ; => bold hi
+  ```"
   ([] :kind/fn)
   ([value] (scicloj.kindly.v4.kind/fn value nil))
   ([value options] (kindly/attach-meta-to-value value {:kindly/kind :kind/fn :kindly/options options})))

@@ -11,7 +11,8 @@
             :example    [:div [:h3 "Hello " [:em "World"]]]}]
    [reagent {:display-as "A reagent component inside HTML"
              :example    [(fn [] [:button {:on-click (fn [ev] (js/alert "You pressed it"))}
-                                  "Press me"])]}]]]
+                                  "Press me"])]}]
+   [emmy-viewers {:display-as "A reagent component corresponding to emmy-viewers"}]]]
 
  ["data visualization formats"
   [[md {:display-as            "a Markdown string"

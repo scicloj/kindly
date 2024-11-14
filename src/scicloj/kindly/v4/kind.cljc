@@ -43,6 +43,13 @@ example: [(fn [] [:button {:on-click (fn [ev] (js/alert \"You pressed it\"))} \"
   ([value] (scicloj.kindly.v4.kind/reagent value nil))
   ([value options] (kindly/attach-meta-to-value value {:kindly/kind :kind/reagent :kindly/options options})))
 
+(defn scittle
+  "display-as: Code to go into a <script type=\"application/x-scittle\">
+example: (println \"hello world\")"
+  ([] :kind/scittle)
+  ([value] (scicloj.kindly.v4.kind/scittle value nil))
+  ([value options] (kindly/attach-meta-to-value value {:kindly/kind :kind/scittle :kindly/options options})))
+
 (defn emmy-viewers
   "display-as: A reagent component corresponding to emmy-viewers"
   ([] :kind/emmy-viewers)

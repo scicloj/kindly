@@ -75,6 +75,7 @@ is wrapped in a vector first"
     :kind/html
     :kind/hiccup
     :kind/reagent
+    :kind/scittle
     :kind/emmy-viewers
 ;; data visualization formats
     :kind/md

@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [4-beta14] - TBD
+- added `kind/scittle`
+
 ## [4-beta13] - 2024-10-22
 - added `:kind/emmy-viewers`
 

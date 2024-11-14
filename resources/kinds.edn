@@ -12,6 +12,8 @@
    [reagent {:display-as "A reagent component inside HTML"
              :example    [(fn [] [:button {:on-click (fn [ev] (js/alert "You pressed it"))}
                                   "Press me"])]}]
+   [scittle {:display-as "Code to go into a <script type=\"application/x-scittle\">"
+             :example    (println "hello world")}]
    [emmy-viewers {:display-as "A reagent component corresponding to emmy-viewers"}]]]
 
  ["data visualization formats"

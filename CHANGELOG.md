@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
-## [4-beta14] - TBD
+## [4-beta14] - 2024-11-15
 - added `kind/scittle`
 
 ## [4-beta13] - 2024-10-22

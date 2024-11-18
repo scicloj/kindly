@@ -1,0 +1,7 @@
+{
+ :show                false
+ :base-target-path    "docs"
+ :base-source-path    "notebooks"
+ :clean-up-target-dir false
+ :remote-repo         {:git-url "https://github.com/scicloj/kindly"
+                       :branch  "main"}}

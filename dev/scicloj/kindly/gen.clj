@@ -14,13 +14,22 @@
 (defn escape [s]
   (str/replace s "\"" "\\\""))
 
+(defn docstring-attr [k v]
+  (if (= k :raw-docstring)
+    v
+    (str (name k) ": "
+      (case k
+        :example (str "\n```clj\n" (escape v) "\n```\n")
+        :examples (str "\n```clj\n" (str/join "\n" (map escape v)) "\n```\n") 
+        (escape v)))))
+
 (defn kind-fn [[kind attrs]]
   (let [kind-kw (keyword "kind" (name kind))]
     (str "(defn " kind \newline
          "  \""
          (str/join \newline
                    (for [[k v] attrs]
-                     (str (name k) ": " (escape v))))
+                     (docstring-attr k v)))
          "\"" \newline
          "  ([] " kind-kw ")" \newline
          "  ([value] (scicloj.kindly.v4.kind/" kind " value nil))" \newline

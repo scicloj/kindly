@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [4-beta15] - 2025-02-19
+- improved docstrings by @holyjak
+
 ## [4-beta14] - 2024-11-15
 - added `kind/scittle`
 

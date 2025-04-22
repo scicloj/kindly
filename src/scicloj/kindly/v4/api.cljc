@@ -69,6 +69,7 @@ is wrapped in a vector first"
   "A set of common visualization requests"
   #{
 ;; simple behaviours
+    :kind/println
     :kind/pprint
     :kind/hidden
 ;; web dev

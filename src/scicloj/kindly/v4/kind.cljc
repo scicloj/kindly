@@ -1,12 +1,23 @@
 (ns scicloj.kindly.v4.kind
   "Kinds for visualization"
   (:require [scicloj.kindly.v4.api :as kindly])
-  (:refer-clojure :exclude [test seq vector set map fn]))
+  (:refer-clojure :exclude [println test seq vector set map fn]))
 
 ;; ## simple behaviours
 
+(defn println
+  "display-as: a formatted string of a printed value
+example: 
+```clj
+{:key1 \"value1\", :key2 \"value2\"}
+```
+"
+  ([] :kind/println)
+  ([value] (scicloj.kindly.v4.kind/println value nil))
+  ([value options] (kindly/attach-meta-to-value value {:kindly/kind :kind/println :kindly/options options})))
+
 (defn pprint
-  "display-as: a formatted string
+  "display-as: a formatted string of a pretty-printed value
 example: 
 ```clj
 {:key1 \"value1\", :key2 \"value2\"}

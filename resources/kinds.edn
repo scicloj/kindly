@@ -1,5 +1,7 @@
 [["simple behaviours"
-  [[pprint {:display-as "a formatted string"
+  [[println {:display-as "a formatted string of a printed value"
+             :example    {:key1 "value1", :key2, "value2"}}]
+   [pprint {:display-as "a formatted string of a pretty-printed value"
             :example    {:key1 "value1", :key2, "value2"}}]
    [hidden {:display-as "do not display"
             :example    ["SECRET"]}]]]

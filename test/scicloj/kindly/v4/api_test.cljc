@@ -14,8 +14,8 @@
       "should update deeply nested paths")
   (is (= (kindly/deep-merge {:a {:b {:c 10}}}
                             {:a {:b nil}})
-         {:a {:b nil}})
-      "should not merge nil, a nil value inside a map is used as a value for erasure")
+         {:a {:b {:c 10}}})
+      "should merge nil")
   (is (= (kindly/deep-merge {:a {:b {:c 10}}}
                             nil)
          {:a {:b {:c 10}}})
@@ -27,7 +27,9 @@
       "more than two arguments are allowed")
   (is (= (kindly/deep-merge)
          {})
-      "no arguments mean an empty map"))
+      "no arguments mean an empty map")
+  (is (= (kindly/deep-merge {:a 1} ^:replace {:b 2})
+         {:b 2})))
 
 (deftest options-test
   (kindly/set-options! {:foo "bar"})

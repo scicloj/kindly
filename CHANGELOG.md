@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [4-beta17] - 2025-06-29
+- adjust deep-merge to merge nils (PR #27)
+
 ## [4-beta16] - 2025-04-22
 - added `kind/println`
 

@@ -36,6 +36,10 @@
               [:kindly/options :wrapped-value])
       "wrapped values should have annotations in metadata")
 
+(is (not= (meta (kindly/attach-meta-to-value  4  {:kindly/kind :code}))
+          (meta (kindly/attach-meta-to-value [4] {:kindly/kind :code})))
+    "wrapped values should be distinguishable from single-element vectors")
+
   (kindly/set-options! {:foo "bar"})
   (is (= "bar" (-> (kindly/get-options) :foo))
       "setting options should work")

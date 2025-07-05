@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## unreleased
+- Annotate wrapped values to distinguish them from single-element vectors (PR #28) - by @respatialized
+
 ## [4-beta17] - 2025-06-29
 - adjust deep-merge to merge nils (PR #27)
 

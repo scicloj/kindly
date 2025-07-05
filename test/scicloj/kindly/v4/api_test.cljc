@@ -32,6 +32,10 @@
          {:b 2})))
 
 (deftest options-test
+  (is (get-in (meta (kindly/attach-meta-to-value 4 {:kindly/kind :code}))
+              [:kindly/options :wrapped-value])
+      "wrapped values should have annotations in metadata")
+
   (kindly/set-options! {:foo "bar"})
   (is (= "bar" (-> (kindly/get-options) :foo))
       "setting options should work")

@@ -5,7 +5,9 @@
   [value m]
   (if (instance? clojure.lang.IObj value)
     (vary-meta value merge m)
-    (attach-meta-to-value [value] m)))
+    (attach-meta-to-value
+     [value]
+     (update m :kindly/options assoc :wrapped-value true))))
 
 (defn attach-kind-to-value
   [value kind]

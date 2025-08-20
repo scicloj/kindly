@@ -83,6 +83,7 @@ is wrapped in a vector first"
     :kind/println
     :kind/pprint
     :kind/hidden
+    :kind/hide-code
 ;; web dev
     :kind/html
     :kind/hiccup

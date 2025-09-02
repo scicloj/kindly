@@ -80,22 +80,33 @@
   [value m]
   (if (instance? clojure.lang.IObj value)
     (vary-meta value merge m)
-    (attach-meta-to-value [value] m)))
+    (attach-meta-to-value
+     [value]
+     (update m :kindly/options assoc :wrapped-value true))))
 
 (defn attach-kind-to-value
   [value kind]
   (attach-meta-to-value value {:kindly/kind kind}))
 
 (defn deep-merge
-  \"Recursively merges maps only.\"
-  [& xs]
-  (->> xs
-       (remove nil?)
-       (reduce (fn m [a b]
-                 (if (and (map? a) (map? b))
-                   (merge-with m a b)
-                   b))
-               {})))
+  \"Recursively merges values with support for control metadata.
+  Merge rules:
+  - Maps are merged recursively
+  - Non-maps except nil replace previous value
+  - ^:replace on a map replaces previous value
+  Examples:
+  (deep-merge {:a 1} {:a 2}) => {:a 2}
+  (deep-merge {:a 1} ^:replace {:b 2}) => {:b 2}\"
+  ([] {})
+  ([a] a)
+  ([a b]
+   (cond
+     (:replace (meta b)) b
+     (and (map? a) (map? b)) (merge-with deep-merge a b)
+     (and (map? a) (nil? b)) a
+     :else b))
+  ([a b & more]
+   (reduce deep-merge (deep-merge a b) more)))
 
 (defn get-options
   []

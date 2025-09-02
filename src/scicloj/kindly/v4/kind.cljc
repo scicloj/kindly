@@ -7,7 +7,7 @@
 
 (defn println
   "display-as: a formatted string of a printed value
-example: 
+example:
 ```clj
 {:key1 \"value1\", :key2 \"value2\"}
 ```
@@ -18,7 +18,7 @@ example:
 
 (defn pprint
   "display-as: a formatted string of a pretty-printed value
-example: 
+example:
 ```clj
 {:key1 \"value1\", :key2 \"value2\"}
 ```
@@ -29,7 +29,7 @@ example:
 
 (defn hidden
   "display-as: do not display
-example: 
+example:
 ```clj
 [\"SECRET\"]
 ```
@@ -43,7 +43,7 @@ example:
 
 (defn html
   "display-as: HTML
-example: 
+example:
 ```clj
 <div><h3>Hello ><em>World</em></h3><div>
 ```
@@ -54,7 +54,7 @@ example:
 
 (defn hiccup
   "display-as: HTML
-example: 
+example:
 ```clj
 [:div [:h3 \"Hello \" [:em \"World\"]]]
 ```
@@ -65,7 +65,7 @@ example:
 
 (defn reagent
   "display-as: A reagent component inside HTML
-example: 
+example:
 ```clj
 [(fn [] [:button {:on-click (fn [ev] (js/alert \"You pressed it\"))} \"Press me\"])]
 ```
@@ -74,9 +74,25 @@ example:
   ([value] (scicloj.kindly.v4.kind/reagent value nil))
   ([value options] (kindly/attach-meta-to-value value {:kindly/kind :kind/reagent :kindly/options options})))
 
+
+(defn mermaid
+  "display-as: A mermaid diagram
+  example:
+  ```flowchart TD
+    A[Christmas] -->|Get money| B(Go shopping)
+    B --> C{Let me think}
+    C -->|One| D[Laptop]
+    C -->|Two| E[iPhone]
+    C -->|Three| F[fa:fa-car Car]
+  ```
+  "
+  ([] :kind/mermaid)
+  ([value] (scicloj.kindly.v4.kind/mermaid value nil))
+  ([value options] (kindly/attach-meta-to-value value {:kindly/kind :kind/mermaid :kindly/options options})))
+
 (defn scittle
   "display-as: Code to go into a <script type=\"application/x-scittle\">
-example: 
+example:
 ```clj
 (println \"hello world\")
 ```
@@ -96,7 +112,7 @@ example:
 
 (defn md
   "display-as: a Markdown string
-example: 
+example:
 ```clj
 ## Hello *World*
 ```
@@ -107,7 +123,7 @@ example:
 
 (defn tex
   "display-as: a TeX formula
-example: 
+example:
 ```clj
 x^2
 ```
@@ -118,7 +134,7 @@ x^2
 
 (defn code
   "display-as: a piece syntax highlighted Clojure code
-example: 
+example:
 ```clj
 (+ 1 2)
 ```
@@ -129,7 +145,7 @@ example:
 
 (defn edn
   "display-as: a piece syntax highlighted EDN structure
-example: 
+example:
 ```clj
 {:x [1 2 3]}
 ```
@@ -140,7 +156,7 @@ example:
 
 (defn vega
   "display-as: a chart
-example: 
+example:
 ```clj
 {:description \"A basic bar chart example, with value labels shown upon pointer hover.\", :axes [{:orient \"bottom\", :scale \"xscale\"} {:orient \"left\", :scale \"yscale\"}], :width 400, :scales [{:name \"xscale\", :type \"band\", :domain {:data \"table\", :field \"category\"}, :range \"width\", :padding 0.05, :round true} {:name \"yscale\", :domain {:data \"table\", :field \"amount\"}, :nice true, :range \"height\"}], :padding 5, :marks [{:type \"rect\", :from {:data \"table\"}, :encode {:enter {:x {:scale \"xscale\", :field \"category\"}, :width {:scale \"xscale\", :band 1}, :y {:scale \"yscale\", :field \"amount\"}, :y2 {:scale \"yscale\", :value 0}}, :update {:fill {:value \"steelblue\"}}, :hover {:fill {:value \"red\"}}}} {:type \"text\", :encode {:enter {:align {:value \"center\"}, :baseline {:value \"bottom\"}, :fill {:value \"#333\"}}, :update {:x {:scale \"xscale\", :signal \"tooltip.category\", :band 0.5}, :y {:scale \"yscale\", :signal \"tooltip.amount\", :offset -2}, :text {:signal \"tooltip.amount\"}, :fillOpacity [{:test \"datum === tooltip\", :value 0} {:value 1}]}}}], :signals [{:name \"tooltip\", :value {}, :on [{:events \"rect:pointerover\", :update \"datum\"} {:events \"rect:pointerout\", :update \"{}\"}]}], :height 200, :data [{:name \"table\", :values [{:category \"A\", :amount 28} {:category \"B\", :amount 55} {:category \"C\", :amount 43} {:category \"D\", :amount 91} {:category \"E\", :amount 81} {:category \"F\", :amount 53} {:category \"G\", :amount 19} {:category \"H\", :amount 87}]}]}
 ```
@@ -153,7 +169,7 @@ json-schema: https://vega.github.io/schema/vega/v5.json"
 
 (defn vega-lite
   "display-as: VegaLite chart
-example: 
+example:
 ```clj
 {:description \"A simple bar chart with embedded data.\", :data {:values [{\"a\" \"A\", \"b\" 28} {\"a\" \"B\", \"b\" 55} {\"a\" \"C\", \"b\" 43} {\"a\" \"D\", \"b\" 91} {\"a\" \"E\", \"b\" 81} {\"a\" \"F\", \"b\" 53} {\"a\" \"G\", \"b\" 19} {\"a\" \"H\", \"b\" 87} {\"a\" \"I\", \"b\" 52}]}, :mark \"bar\", :encoding {\"x\" {\"field\" \"a\", \"type\" \"nominal\", \"axis\" {\"labelAngle\" 0}}, \"y\" {\"field\" \"b\", \"type\" \"quantitative\"}}}
 ```
@@ -166,7 +182,7 @@ json-schema: https://vega.github.io/schema/vega-lite/v5.json"
 
 (defn echarts
   "display-as: a chart
-example: 
+example:
 ```clj
 [[\"a\" \"b\" \"c\" \"d\"] [1 2 3 4]]
 ```
@@ -178,7 +194,7 @@ docs: https://echarts.apache.org/en/option.html"
 
 (defn cytoscape
   "display-as: a graph
-example: 
+example:
 ```clj
 {:nodes #{1 4 3 2 5}, :edges #{[4 3] [4 2] [1 2] [3 5]}}
 ```
@@ -191,7 +207,7 @@ json-schema: https://raw.githubusercontent.com/AZaitzeff/cytoscape_js_schema/mai
 
 (defn plotly
   "display-as: a plot
-example: 
+example:
 ```clj
 [{:x [1 2 3 4 5], :y [1 2 4 8 16]}]
 ```
@@ -218,7 +234,7 @@ docs: https://plotly.com/ggplot2/"
 
 (defn video
   "display-as: an embedded video
-examples: 
+examples:
 ```clj
 {:youtube-id \"MXHI4mgfVk8\"}
 \"file:///path/to/vid.mp4\"
@@ -237,7 +253,7 @@ docs: https://observablehq.com/"
 
 (defn highcharts
   "display-as: a chart
-example: 
+example:
 ```clj
 {:title {:text \"Line chart\"}, :subtitle {:text \"By Job Category\"}, :yAxis {:title {:text \"Number of Employees\"}}, :series [{:name \"Installation & Developers\", :data [43934 48656 65165 81827 112143 142383 171533 165174 155157 161454 154610]} {:name \"Manufacturing\", :data [24916 37941 29742 29851 32490 30282 38121 36885 33726 34243 31050]} {:name \"Sales & Distribution\", :data [11744 30000 16005 19771 20185 24377 32147 30912 29243 29213 25663]} {:name \"Operations & Maintenance\", :data [nil nil nil nil nil nil nil nil 11164 11218 10077]} {:name \"Other\", :data [21908 5548 8105 11248 8989 11816 18274 17300 13053 11906 10073]}], :xAxis {:accessibility {:rangeDescription \"Range: 2010 to 2020\"}}, :legend {:layout \"vertical\", :align \"right\", :verticalAlign \"middle\"}, :plotOptions {:series {:label {:connectorAllowed false}, :pointStart 2010}}, :responsive {:rules [{:condition {:maxWidth 500}, :chartOptions {:legend {:layout \"horizontal\", :align \"center\", :verticalAlign \"bottom\"}}}]}}
 ```
@@ -253,7 +269,7 @@ json-schema: "
 
 (defn image
   "display-as: an image
-example: 
+example:
 ```clj
 At the moment, java BufferedImage objects are supported.
 ```
@@ -264,7 +280,7 @@ At the moment, java BufferedImage objects are supported.
 
 (defn dataset
   "display-as: a table
-example: 
+example:
 ```clj
 (->> (System/getProperties) (map (fn [[k v]] {:k k, :v (apply str (take 40 (str v)))})) (tech.v3.dataset/->>dataset {:dataset-name \"My Truncated System Properties\"}))
 ```
@@ -286,7 +302,7 @@ docs: https://haifengl.github.io/"
 
 (defn var
   "display-as: the name of a var
-example: 
+example:
 ```clj
 (def testvar 100)
 ```
@@ -297,7 +313,7 @@ example:
 
 (defn test
   "display-as: success or failure
-example: 
+example:
 ```clj
 (deftest unity-test (is (= 1 1)))
 ```
@@ -311,7 +327,7 @@ example:
 
 (defn seq
   "display-as: a sequence
-example: 
+example:
 ```clj
 (range 5)
 ```
@@ -322,7 +338,7 @@ example:
 
 (defn vector
   "display-as: a sequence
-example: 
+example:
 ```clj
 (vec (range 5))
 ```
@@ -333,7 +349,7 @@ example:
 
 (defn set
   "display-as: a bag
-example: 
+example:
 ```clj
 (set (range 5))
 ```
@@ -344,7 +360,7 @@ example:
 
 (defn map
   "display-as: associated values
-example: 
+example:
 ```clj
 {:key1 \"value1\", :key2 \"value2\"}
 ```
@@ -358,7 +374,7 @@ example:
 
 (defn table
   "display-as: a table
-examples: 
+examples:
 ```clj
 [{:col1 1, :col2 2} {:col1 3, :col2 4}]
 {:col1 [1 3], :col2 [2 4]}
@@ -371,7 +387,7 @@ examples:
 
 (defn portal
   "display-as: portal
-example: 
+example:
 ```clj
 {:key1 \"value1\", :key2 [:div [:h3 \"Hello \" [:em \"World\"]]]}
 ```
@@ -385,7 +401,7 @@ example:
 
 (defn fragment
   "display-as: one toplevel context with a sequential value considered as many toplevel contexts of various kinds
-example: 
+example:
 ```clj
 [[\"**hello**\"] [:p [:b \"hello\"]]]
 ```
@@ -396,11 +412,11 @@ example:
 
 (defn fn
   "display-as: the evaluation of the given function and arguments
-examples: 
+examples:
   ```clj
   ;; vector form
   (kind/fn [+ 2 3]) ; => 5
-  (kind/fn [(fn [s] (kind/md s)) 
+  (kind/fn [(fn [s] (kind/md s))
 **hi**: ]) ; => bold hi
   ;; map form
   (kind/fn {:kindly/f (fn [{:keys [x y]}] (+ x y)) :x 1 :y 2}) ; => 3
@@ -414,7 +430,7 @@ examples:
 
 (defn test-last
   "display-as: invisible (both code and value), but generates a test
-example: 
+example:
 ```clj
 [> 9]
 ```
@@ -422,4 +438,3 @@ example:
   ([] :kind/test-last)
   ([value] (scicloj.kindly.v4.kind/test-last value nil))
   ([value options] (kindly/attach-meta-to-value value {:kindly/kind :kind/test-last :kindly/options options})))
-

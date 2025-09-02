@@ -90,6 +90,7 @@ is wrapped in a vector first"
     :kind/scittle
     :kind/emmy-viewers
 ;; data visualization formats
+    :kind/mermaid
     :kind/md
     :kind/tex
     :kind/code

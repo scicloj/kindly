@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [unreleased]
+- added `:kind/mermaid` - by @emil0r
+
 ## [4-beta18] - 2025-07-06
 - Annotate wrapped values to distinguish them from single-element vectors (PR #28) - by @respatialized
 

@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
-## [unreleased]
+## [4-beta19] - 2025-09-03
 - added `:kind/mermaid` - by @emil0r
 
 ## [4-beta18] - 2025-07-06

@@ -19,7 +19,9 @@
    [emmy-viewers {:display-as "A reagent component corresponding to emmy-viewers"}]]]
 
  ["data visualization formats"
-  [[mermaid {:display-as "Mermaid diagram"
+  [[graphviz {:display-as "Graphviz diagram"
+              :example "digram G { a -> b -> c }"}]
+   [mermaid {:display-as "Mermaid diagram"
              :example "flowchart TD
     A[Christmas] -->|Get money| B(Go shopping)
     B --> C{Let me think}

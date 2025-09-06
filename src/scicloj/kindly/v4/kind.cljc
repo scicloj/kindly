@@ -98,7 +98,7 @@ example:
   "display-as: Graphviz diagram
 example: 
 ```clj
-digram G { a -> b -> c }
+digraph G { a -> b -> c }
 ```
 "
   ([] :kind/graphviz)

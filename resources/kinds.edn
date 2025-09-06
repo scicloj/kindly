@@ -20,7 +20,7 @@
 
  ["data visualization formats"
   [[graphviz {:display-as "Graphviz diagram"
-              :example "digram G { a -> b -> c }"}]
+              :example "digraph G { a -> b -> c }"}]
    [mermaid {:display-as "Mermaid diagram"
              :example "flowchart TD
     A[Christmas] -->|Get money| B(Go shopping)

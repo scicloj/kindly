@@ -94,6 +94,17 @@ example:
 
 ;; ## data visualization formats
 
+(defn graphviz
+  "display-as: Graphviz diagram
+example: 
+```clj
+digraph G { a -> b -> c }
+```
+"
+  ([] :kind/graphviz)
+  ([value] (scicloj.kindly.v4.kind/graphviz value nil))
+  ([value options] (kindly/attach-meta-to-value value {:kindly/kind :kind/graphviz :kindly/options options})))
+
 (defn mermaid
   "display-as: Mermaid diagram
 example: 

@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
 ## [4-beta21] - 2025-11-01
-- added `:kind/audio`
+- added `:kind/audio` (experimental)
 
 ## [4-beta20] - 2025-09-12
 - added `:kind/graphviz` - by @emil0r

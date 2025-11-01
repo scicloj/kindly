@@ -249,12 +249,23 @@ docs: https://plotly.com/ggplot2/"
 examples: 
 ```clj
 {:youtube-id \"MXHI4mgfVk8\"}
-\"file:///path/to/vid.mp4\"
+{:src \"https://video-url.mp4\"}
 ```
 "
   ([] :kind/video)
   ([value] (scicloj.kindly.v4.kind/video value nil))
   ([value options] (kindly/attach-meta-to-value value {:kindly/kind :kind/video :kindly/options options})))
+
+(defn audio
+  "display-as: an embedded audio
+examples: 
+```clj
+{:src \"https://audio-url.mp3\"}
+```
+"
+  ([] :kind/audio)
+  ([value] (scicloj.kindly.v4.kind/audio value nil))
+  ([value options] (kindly/attach-meta-to-value value {:kindly/kind :kind/audio :kindly/options options})))
 
 (defn observable
   "display-as: Observable visualizations

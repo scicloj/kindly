@@ -129,7 +129,9 @@
                           :docs "https://plotly.com/ggplot2/"}]
    [video {:display-as "an embedded video"
            :examples [{:youtube-id "MXHI4mgfVk8"}
-                      "\"file:///path/to/vid.mp4\""]}]
+                      {:src "https://video-url.mp4"}]}]
+   [audio {:display-as "an embedded audio"
+           :examples [{:src "https://audio-url.mp3"}]}]
    [observable {:display-as "Observable visualizations"
                 :docs "https://observablehq.com/"}]
    [highcharts {:display-as "a chart"

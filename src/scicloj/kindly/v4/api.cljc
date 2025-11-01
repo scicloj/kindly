@@ -104,6 +104,7 @@ is wrapped in a vector first"
     :kind/htmlwidgets-plotly
     :kind/htmlwidgets-ggplotly
     :kind/video
+    :kind/audio
     :kind/observable
     :kind/highcharts
 ;; specific types

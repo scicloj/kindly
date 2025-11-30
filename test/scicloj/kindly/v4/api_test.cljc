@@ -1,5 +1,5 @@
 (ns scicloj.kindly.v4.api-test
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [clojure.test :refer [deftest is are testing]]
             [scicloj.kindly.v4.api :as kindly]))
 
 (deftest deep-merge-test
@@ -46,3 +46,10 @@
   (kindly/merge-options! {:foo "baz"})
   (is (= "baz" (-> (kindly/get-options) :foo))
       "merging options should work"))
+
+(deftest predicate-test
+  (are [v] (kindly/kind? v)
+   {:value 3 :kind :code}
+   ^{:kind :code} [3]
+   {:value 3 :kindly/kind :kind/code}
+   ^{:kindly/kind :kind/code} [3]))

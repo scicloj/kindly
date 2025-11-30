@@ -76,6 +76,20 @@ is wrapped in a vector first"
   [& args]
   (consider args :kind/test-last))
 
+(defn kind? "Returns true if the value is a Kindly kind of any type." [v]
+  (let [value-meta (meta v)]
+    (cond
+     ;; annotated with metadata
+     (or (contains? value-meta :kind)
+         (contains? value-meta :kindly/kind))
+     true
+     ;; context map
+     (and (map? v)
+          (or (contains? v :kind) (contains? v :kindly/kind))
+          (or (contains? v :value) (contains? v :kindly/value)))
+     true
+     :default false)))
+
 (def known-kinds
   "A set of common visualization requests"
   #{

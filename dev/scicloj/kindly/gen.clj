@@ -153,12 +153,85 @@ is wrapped in a vector first\"
 
 " (known-kinds all-kinds)))
 
+(defn api-ns-v5 [all-kinds]
+  (str "(ns scicloj.kindly.v5.api
+  \"See the kind namespace\")
+
+(defn attach-meta-to-value
+  [value m]
+  (if (instance? clojure.lang.IObj value)
+    (vary-meta value merge m)
+    (attach-meta-to-value
+     [value]
+     (update m :kindly/options assoc :wrapped-value true))))
+
+(defn attach-kind-to-value
+  [value kind]
+  (attach-meta-to-value value {:kindly/kind kind}))
+
+(defn deep-merge
+  \"Recursively merges values with support for control metadata.
+  Merge rules:
+  - Maps are merged recursively
+  - Non-maps except nil replace previous value
+  - ^:replace on a map replaces previous value
+  Examples:
+  (deep-merge {:a 1} {:a 2}) => {:a 2}
+  (deep-merge {:a 1} ^:replace {:b 2}) => {:b 2}\"
+  ([] {})
+  ([a] a)
+  ([a b]
+   (cond
+     (:replace (meta b)) b
+     (and (map? a) (map? b)) (merge-with deep-merge a b)
+     (and (map? a) (nil? b)) a
+     :else b))
+  ([a b & more]
+   (reduce deep-merge (deep-merge a b) more)))
+
+(defn hide-code
+  \"Annotate whether the code of this value should be hidden\"
+  ([value]
+    (hide-code value true))
+  ([value bool]
+   ;; Will change when Clay is updated
+   (attach-meta-to-value value {:kindly/hide-code bool})))
+
+(defn set-options!
+  \"Replaces *options* with options\"
+  [options]
+  (vary-meta options merge {:kindly/merge-options true}))
+
+(defn merge-options!
+  \"Mutates *options* with the deep merge of options\"
+  [options]
+  (vary-meta options merge {:kindly/merge-options true}))
+
+(defn consider
+  \"Add metadata to a given value.
+A values which cannot have metadata
+(i.e., is not an instance of `IObj`)
+is wrapped in a vector first\"
+  [value m]
+  (cond (keyword? m) (attach-kind-to-value value m)
+        (fn? m) (consider value (m))
+        (map? m) (attach-meta-to-value value m)))
+
+(defn check
+  \"Add a generated test using `:kind/test-last`\"
+  [& args]
+  (consider args :kind/test-last))
+
+" (known-kinds all-kinds)))
+
 (defn -main [& args]
   (let [all-kinds (read-kinds)]
     (->> (kind-ns all-kinds)
          (spit (io/file "src" "scicloj" "kindly" "v4" "kind.cljc")))
     (->> (api-ns all-kinds)
-         (spit (io/file "src" "scicloj" "kindly" "v4" "api.cljc")))))
+         (spit (io/file "src" "scicloj" "kindly" "v4" "api.cljc")))
+    (->> (api-ns-v5 all-kinds)
+         (spit (io/file "src" "scicloj" "kindly" "v5" "api.cljc")))))
 
 (comment
   (-main))

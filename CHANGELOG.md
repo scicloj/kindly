@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
-## [unreleased]
+## [4-beta22] - 2026-01-26
 - added `:kind/doc` (experimental)
 
 ## [4-beta21] - 2025-11-01

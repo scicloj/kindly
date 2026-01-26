@@ -189,7 +189,9 @@
   [[var {:display-as "the name of a var"
          :example    (def testvar 100)}]
    [test {:display-as "success or failure"
-          :example    (deftest unity-test (is (= 1 1)))}]]]
+          :example    (deftest unity-test (is (= 1 1)))}]
+   [doc {:display-as "a documentation entry for a given value (var, keyword, symbol, etc.)"
+         :example :my-namespace/my-keyword-to-be-documented}]]]
 
  ["plain structures"
   [[seq {:display-as "a sequence"

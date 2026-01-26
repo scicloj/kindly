@@ -345,6 +345,17 @@ example:
   ([value] (scicloj.kindly.v4.kind/test value nil))
   ([value options] (kindly/attach-meta-to-value value {:kindly/kind :kind/test :kindly/options options})))
 
+(defn doc
+  "display-as: a documentation entry for a given value (var, keyword, symbol, etc.)
+example: 
+```clj
+:my-namespace/my-keyword-to-be-documented
+```
+"
+  ([] :kind/doc)
+  ([value] (scicloj.kindly.v4.kind/doc value nil))
+  ([value options] (kindly/attach-meta-to-value value {:kindly/kind :kind/doc :kindly/options options})))
+
 
 ;; ## plain structures
 

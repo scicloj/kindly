@@ -114,6 +114,7 @@ is wrapped in a vector first"
 ;; clojure specific
     :kind/var
     :kind/test
+    :kind/doc
 ;; plain structures
     :kind/seq
     :kind/vector

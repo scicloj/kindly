@@ -20,7 +20,7 @@
     (str (name k) ": "
       (case k
         :example (str "\n```clj\n" (escape v) "\n```\n")
-        :examples (str "\n```clj\n" (str/join "\n" (map escape v)) "\n```\n") 
+        :examples (str "\n```clj\n" (str/join "\n" (map escape v)) "\n```\n")
         (escape v)))))
 
 (defn kind-fn [[kind attrs]]
@@ -150,6 +150,13 @@ is wrapped in a vector first\"
   \"Add a generated test using `:kind/test-last`\"
   [& args]
   (consider args :kind/test-last))
+
+(def ^:dynamic *prefer-kinds*
+  \"When bound to true, prefer returning Kindly-annotated values
+   rather than launching external viewers or tools.
+   Tools that view kinds (like Clay) will bind to true.
+   Libraries and user code can use this to know that the tool is already running.\"
+  false)
 
 " (known-kinds all-kinds)))
 

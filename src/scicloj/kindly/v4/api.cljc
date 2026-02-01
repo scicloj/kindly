@@ -76,6 +76,13 @@ is wrapped in a vector first"
   [& args]
   (consider args :kind/test-last))
 
+(def ^:dynamic *prefer-kinds*
+  "When bound to true, prefer returning Kindly-annotated values
+   rather than launching external viewers or tools.
+   Tools that view kinds (like Clay) will bind to true.
+   Libraries and user code can use this to know that the tool is already running."
+  false)
+
 (def known-kinds
   "A set of common visualization requests"
   #{

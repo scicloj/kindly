@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [4-beta23] - 2026-02-01
+- added `*prefer-kinds*` for better tool integration (PR #33)
+
 ## [4-beta22] - 2026-01-26
 - added `:kind/doc` (experimental)
 

@@ -33,10 +33,6 @@
   ([a b & more]
    (reduce deep-merge (deep-merge a b) more)))
 
-(defn get-options
-  []
-  (-> (meta *ns*) :kindly/options))
-
 (defn hide-code
   "Annotate whether the code of this value should be hidden"
   ([value]
@@ -45,12 +41,7 @@
    ;; Will change when Clay is updated
    (attach-meta-to-value value {:kindly/hide-code bool})))
 
-(defn set-options!
-  "Replaces *options* with options"
-  [options]
-  (vary-meta options merge {:kindly/merge-options true}))
-
-(defn merge-options!
+(defn merge-options
   "Mutates *options* with the deep merge of options"
   [options]
   (vary-meta options merge {:kindly/merge-options true}))

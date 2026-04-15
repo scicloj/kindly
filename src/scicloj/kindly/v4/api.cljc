@@ -48,18 +48,12 @@
 (defn set-options!
   "Replaces *options* with options"
   [options]
-  (hide-code
-    (attach-kind-to-value
-      (alter-meta! *ns* merge {:kindly/options options})
-      :kind/hidden)))
+  (vary-meta options merge {:kindly/merge-options true}))
 
 (defn merge-options!
   "Mutates *options* with the deep merge of options"
   [options]
-  (hide-code
-    (attach-kind-to-value
-      (alter-meta! *ns* deep-merge {:kindly/options options})
-      :kind/hidden)))
+  (vary-meta options merge {:kindly/merge-options true}))
 
 (defn consider
   "Add metadata to a given value.

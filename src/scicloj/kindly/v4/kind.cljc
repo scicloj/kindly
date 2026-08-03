@@ -54,6 +54,7 @@ example:
 
 (defn hiccup
   "display-as: HTML
+docs: https://weavejester.github.io/hiccup/
 example: 
 ```clj
 [:div [:h3 \"Hello \" [:em \"World\"]]]
@@ -62,6 +63,18 @@ example:
   ([] :kind/hiccup)
   ([value] (scicloj.kindly.v4.kind/hiccup value nil))
   ([value options] (kindly/attach-meta-to-value value {:kindly/kind :kind/hiccup :kindly/options options})))
+
+(defn hiccup2
+  "display-as: HTML defaulting to string escaping
+docs: https://weavejester.github.io/hiccup/
+example: 
+```clj
+[:div [:h3 \"Hello &\" [:em \"World\"]]]
+```
+"
+  ([] :kind/hiccup2)
+  ([value] (scicloj.kindly.v4.kind/hiccup2 value nil))
+  ([value options] (kindly/attach-meta-to-value value {:kindly/kind :kind/hiccup2 :kindly/options options})))
 
 (defn reagent
   "display-as: A reagent component inside HTML

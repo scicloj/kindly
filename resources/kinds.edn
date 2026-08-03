@@ -10,7 +10,11 @@
   [[html {:display-as "HTML"
           :example "<div><h3>Hello ><em>World</em></h3><div>"}]
    [hiccup {:display-as "HTML"
+            :docs "https://weavejester.github.io/hiccup/"
             :example    [:div [:h3 "Hello " [:em "World"]]]}]
+   [hiccup2 {:display-as "HTML defaulting to string escaping"
+             :docs "https://weavejester.github.io/hiccup/"
+             :example    [:div [:h3 "Hello &" [:em "World"]]]}]
    [reagent {:display-as "A reagent component inside HTML"
              :example    [(fn [] [:button {:on-click (fn [ev] (js/alert "You pressed it"))}
                                   "Press me"])]}]

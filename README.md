@@ -14,6 +14,16 @@ Kindly is a small library for defining in what kinds of way Clojure forms and va
 
 v4 is the currently active version. It is in Beta stage.
 
+## Contributing
+
+Kindly is a specification for annotating values with kinds.
+The specification is defined as data in `resources/kinds.edn`.
+To add a kind, edit `resources/kinds.edn` then generate the api:
+
+```
+clojure -M:gen
+```
+
 ## License
 
 Copyright © 2021 Scicloj

@@ -93,6 +93,7 @@ is wrapped in a vector first"
 ;; web dev
     :kind/html
     :kind/hiccup
+    :kind/hiccup2
     :kind/reagent
     :kind/scittle
     :kind/emmy-viewers

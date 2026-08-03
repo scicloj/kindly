@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
-## [4-beta24] - 2026-08-03
+## [4-beta25] - 2026-08-03
 - added `:kind/hiccup2` (PR #34)
 
 ## [4-beta23] - 2026-02-01
